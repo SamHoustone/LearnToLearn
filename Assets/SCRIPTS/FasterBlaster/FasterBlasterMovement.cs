@@ -80,7 +80,7 @@ public class FasterBlasterMovement : MonoBehaviour
                 Debug.Log("Correct");
                 score.correctint++;
                 audioManager.Correct();
-                fasterBlasterController.Start();
+                fasterBlasterController.Go2();
                 ray.transform.GetComponent<Animator>().Play("QuestionAnim");
                 transform.GetComponent<Animator>().Play("QuestionAnim");
 
@@ -89,7 +89,7 @@ public class FasterBlasterMovement : MonoBehaviour
             {
                 ray.transform.GetComponentInParent<FasterBlasterDown>().CorrectOrWrong();
                 fasterBlasterController.Lost.Play("Fade-in");
-                fasterBlasterController.Start();
+                fasterBlasterController.Go2();
                 Debug.Log("Wrong");
                 score.wrongint++;
                 audioManager.Wrong();

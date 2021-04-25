@@ -38,12 +38,72 @@ public class FasterBlasterController : MonoBehaviour
             Answerstext.Add(PlayerPrefs.GetString(reference + "A" + i));
         }
     }
-    public void Start()
+    IEnumerator GO()
     {
+        //WWW imageQ1 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1" ));
+        //WWW imageQ2 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1"));
+        //WWW imageQ3 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1"));
+        //WWW imageQ4 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1"));
+        //WWW imageQ5 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1"));
+        //WWW imageQ6 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1"));
+        //WWW imageQ7 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1"));
+        //WWW imageQ8 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1"));
 
+        WWW imageQ1 = new WWW("http://localhost/ll/1.jpeg");
+        WWW imageQ2 = new WWW("http://localhost/ll/2.jpeg");
+        WWW imageQ3 = new WWW("http://localhost/ll/3.jpeg");
+        WWW imageQ4 = new WWW("http://localhost/ll/6.jpeg");
+        WWW imageQ5 = new WWW("http://localhost/ll/7.jpeg");
+        WWW imageQ6 = new WWW("http://localhost/ll/8.jpeg");
+        WWW imageQ7 = new WWW("http://localhost/ll/9.jpeg");
+        WWW imageQ8 = new WWW("http://localhost/ll/10.jpeg");
+
+        yield return imageQ1;
+
+        Sprite spriteQ1 = Sprite.Create(imageQ1.texture, new Rect(0, 0, imageQ1.texture.width, imageQ1.texture.height), new Vector2(imageQ1.texture.width / 2, imageQ1.texture.height / 2));
+        Sprite spriteQ2 = Sprite.Create(imageQ2.texture, new Rect(0, 0, imageQ2.texture.width, imageQ2.texture.height), new Vector2(imageQ2.texture.width / 2, imageQ2.texture.height / 2));
+        Sprite spriteQ3 = Sprite.Create(imageQ3.texture, new Rect(0, 0, imageQ3.texture.width, imageQ3.texture.height), new Vector2(imageQ3.texture.width / 2, imageQ3.texture.height / 2));
+        Sprite spriteQ4 = Sprite.Create(imageQ4.texture, new Rect(0, 0, imageQ4.texture.width, imageQ4.texture.height), new Vector2(imageQ4.texture.width / 2, imageQ4.texture.height / 2));
+        Sprite spriteQ5 = Sprite.Create(imageQ5.texture, new Rect(0, 0, imageQ5.texture.width, imageQ5.texture.height), new Vector2(imageQ5.texture.width / 2, imageQ5.texture.height / 2));
+        Sprite spriteQ6 = Sprite.Create(imageQ6.texture, new Rect(0, 0, imageQ6.texture.width, imageQ6.texture.height), new Vector2(imageQ6.texture.width / 2, imageQ6.texture.height / 2));
+        Sprite spriteQ7 = Sprite.Create(imageQ7.texture, new Rect(0, 0, imageQ7.texture.width, imageQ7.texture.height), new Vector2(imageQ7.texture.width / 2, imageQ7.texture.height / 2));
+        Sprite spriteQ8 = Sprite.Create(imageQ8.texture, new Rect(0, 0, imageQ8.texture.width, imageQ8.texture.height), new Vector2(imageQ8.texture.width / 2, imageQ8.texture.height / 2));
+
+
+        Questionsprite[0] = spriteQ1;
+        Questionsprite[1] = spriteQ2;
+        Questionsprite[2] = spriteQ3;
+        Questionsprite[3] = spriteQ4;
+        Questionsprite[4] = spriteQ5;
+        Questionsprite[5] = spriteQ6;
+        Questionsprite[6] = spriteQ7;
+        Questionsprite[7] = spriteQ8;
+
+        Questionsprite[0] = spriteQ1;
+        Questionsprite[1] = spriteQ2;
+        Questionsprite[2] = spriteQ3;
+        Questionsprite[3] = spriteQ4;
+        Questionsprite[4] = spriteQ5;
+        Questionsprite[5] = spriteQ6;
+        Questionsprite[6] = spriteQ7;
+        Questionsprite[7] = spriteQ8;
+
+        for (int i = 0; i < reference2; i++)
+        {
+            Questionsprite[i].name = i.ToString();
+            Questionsprite[i].name = i.ToString();
+        }
+        Go2();
+    }
+    public void Go2()
+    {
         Shuffleee();
         GetButtonsQ();
         GetButtonsA();
+    }
+    public void Start()
+    {
+        StartCoroutine(GO());
     }
     public void Shuffleee()
     {
@@ -61,8 +121,6 @@ public class FasterBlasterController : MonoBehaviour
             QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
             Questions.Add(objectsQ[i].GetComponent<Image>());
 
-
-            objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = Questionstext[i];
             Questions[i].sprite = Questionsprite[i];
 
         }

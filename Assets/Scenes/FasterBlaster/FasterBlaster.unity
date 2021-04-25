@@ -403,7 +403,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 1
-  m_CellSize: {x: 359.61, y: 55.2}
+  m_CellSize: {x: 350, y: 150}
   m_Spacing: {x: 17, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
@@ -1852,6 +1852,7 @@ MonoBehaviour:
   QuestionsText: []
   number: 0
   Answersprite:
+  - {fileID: 21300000, guid: 37d8952d635b1fc4c9bc0e1030fef2f7, type: 3}
   - {fileID: 21300000, guid: 3704e209e0c552948b232d00e82e339c, type: 3}
   - {fileID: 21300000, guid: ff06cbf9755a5444588eb7d01ed2be0b, type: 3}
   - {fileID: 21300000, guid: 8771e1c8ef1e3204eb6188a0dc3d06e9, type: 3}
@@ -1859,7 +1860,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5f1454f2d4785c34bb7630ab9058d0ee, type: 3}
   - {fileID: 21300000, guid: 79d9a82c431bc864e89c954ae9ccc6dc, type: 3}
   - {fileID: 21300000, guid: 4688969a365205046a5eb33de7824584, type: 3}
-  - {fileID: 21300000, guid: 37d8952d635b1fc4c9bc0e1030fef2f7, type: 3}
   Questionsprite:
   - {fileID: 21300000, guid: 283de955460b3964abe0c3b6584aa3e8, type: 3}
   - {fileID: 21300000, guid: 8d058f8b409ded74185a8607ddc926f0, type: 3}

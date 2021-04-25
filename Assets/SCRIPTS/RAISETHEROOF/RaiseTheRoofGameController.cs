@@ -124,7 +124,7 @@ public class RaiseTheRoofGameController : MonoBehaviour
 
             int range = Random.Range(0, 3);
 
-            objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = Questionstext[range];
+            objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
             Questions[i].sprite = Questionsprite[range];
 
         }
@@ -138,7 +138,7 @@ public class RaiseTheRoofGameController : MonoBehaviour
             AnswersText.Add(objectsA[i].GetComponentInChildren<TextMeshProUGUI>());
             Answers.Add(objectsA[i].GetComponent<Image>());
 
-            objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
+            objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[i];
             Answers[i].sprite = Answersprite[i];
         }
     }

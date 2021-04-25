@@ -350,7 +350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'TYPE.....
+  m_text: 'PIC
 
 '
   m_isRightToLeft: 0
