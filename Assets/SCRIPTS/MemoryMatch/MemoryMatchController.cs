@@ -32,38 +32,92 @@ public class MemoryMatchController : MonoBehaviour
 
     private int reference2;
     private string reference;
-   
-    public void Start()
+    IEnumerator GO()
     {
-        reference = PlayerPrefs.GetString("REFERENCE");
-        reference2 = PlayerPrefs.GetInt("REFERENCENUMBER");
-        cantouch = false;
-        audioManager = FindObjectOfType<Camera>().GetComponent<AudioManager>();
-        score = GetComponent<Score>();
+        //WWW imageQ1 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1" ));
+        //WWW imageQ2 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1"));
+        //WWW imageQ3 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1"));
+        //WWW imageQ4 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1"));
+        //WWW imageQ5 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1"));
+        //WWW imageQ6 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1"));
+        //WWW imageQ7 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1"));
+        //WWW imageQ8 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1"));
 
+        WWW imageQ1 = new WWW("http://localhost/ll/1.jpeg");
+        WWW imageQ2 = new WWW("http://localhost/ll/2.jpeg");
+        WWW imageQ3 = new WWW("http://localhost/ll/3.jpeg");
+        WWW imageQ4 = new WWW("http://localhost/ll/6.jpeg");
+        WWW imageQ5 = new WWW("http://localhost/ll/7.jpeg");
+        WWW imageQ6 = new WWW("http://localhost/ll/8.jpeg");
+        WWW imageQ7 = new WWW("http://localhost/ll/9.jpeg");
+        WWW imageQ8 = new WWW("http://localhost/ll/10.jpeg");
+
+        yield return imageQ1;
+
+        Sprite spriteQ1 = Sprite.Create(imageQ1.texture, new Rect(0, 0, imageQ1.texture.width, imageQ1.texture.height), new Vector2(imageQ1.texture.width / 2, imageQ1.texture.height / 2));
+        Sprite spriteQ2 = Sprite.Create(imageQ2.texture, new Rect(0, 0, imageQ2.texture.width, imageQ2.texture.height), new Vector2(imageQ2.texture.width / 2, imageQ2.texture.height / 2));
+        Sprite spriteQ3 = Sprite.Create(imageQ3.texture, new Rect(0, 0, imageQ3.texture.width, imageQ3.texture.height), new Vector2(imageQ3.texture.width / 2, imageQ3.texture.height / 2));
+        Sprite spriteQ4 = Sprite.Create(imageQ4.texture, new Rect(0, 0, imageQ4.texture.width, imageQ4.texture.height), new Vector2(imageQ4.texture.width / 2, imageQ4.texture.height / 2));
+        Sprite spriteQ5 = Sprite.Create(imageQ5.texture, new Rect(0, 0, imageQ5.texture.width, imageQ5.texture.height), new Vector2(imageQ5.texture.width / 2, imageQ5.texture.height / 2));
+        Sprite spriteQ6 = Sprite.Create(imageQ6.texture, new Rect(0, 0, imageQ6.texture.width, imageQ6.texture.height), new Vector2(imageQ6.texture.width / 2, imageQ6.texture.height / 2));
+        Sprite spriteQ7 = Sprite.Create(imageQ7.texture, new Rect(0, 0, imageQ7.texture.width, imageQ7.texture.height), new Vector2(imageQ7.texture.width / 2, imageQ7.texture.height / 2));
+        Sprite spriteQ8 = Sprite.Create(imageQ8.texture, new Rect(0, 0, imageQ8.texture.width, imageQ8.texture.height), new Vector2(imageQ8.texture.width / 2, imageQ8.texture.height / 2));
+
+
+        ImageQ[0] = spriteQ1;
+        ImageQ[1] = spriteQ2;
+        ImageQ[2] = spriteQ3;
+        ImageQ[3] = spriteQ4;
+        ImageQ[4] = spriteQ5;
+        ImageQ[5] = spriteQ6;
+        ImageQ[6] = spriteQ7;
+        ImageQ[7] = spriteQ8;
+
+        ImageA[0] = spriteQ1;
+        ImageA[1] = spriteQ2;
+        ImageA[2] = spriteQ3;
+        ImageA[3] = spriteQ4;
+        ImageA[4] = spriteQ5;
+        ImageA[5] = spriteQ6;
+        ImageA[6] = spriteQ7;
+        ImageA[7] = spriteQ8;
+
+        for (int i = 0; i < reference2; i++)
+        {
+            ImageQ[i].name = i.ToString();
+            ImageA[i].name = i.ToString();
+        }
+        Go2();
+    }
+    public void Go2()
+    {
         GetButtonsQ();
         AddListners();
         AddgamePuzzle();
         Shuffle(spriteQ, images);
 
-        for (int i = 0; i < reference2*2; i++)
+        for (int i = 0; i < reference2 * 2; i++)
         {
-            btnsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = spriteQ[i];
-            btnsQ[i].GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+            btnsQ[i].GetComponent<Image>().sprite = images[i];
             StartCoroutine(BackToNormal());
         }
-                    
+    }
+    public void Start()
+    {
+        StartCoroutine(GO());
+        reference = PlayerPrefs.GetString("REFERENCE");
+        reference2 = PlayerPrefs.GetInt("REFERENCENUMBER");
+        cantouch = false;
+        audioManager = FindObjectOfType<Camera>().GetComponent<AudioManager>();
+        score = GetComponent<Score>();                
     }
     IEnumerator BackToNormal()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5);
         for (int i = 0; i < reference2*2; i++)
         {
             btnsQ[i].image.sprite = bgImage;
-            btnsQ[i].GetComponentInChildren<TextMeshProUGUI>().enabled = false;
             cantouch = true;
-
-
         } 
     }    
 
@@ -125,8 +179,6 @@ public class MemoryMatchController : MonoBehaviour
                 firstGuess = true;
                 FirstGameIndex = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
                 firstGuessName = btnsQ[FirstGameIndex].GetComponent<Image>();
-                btnsQ[FirstGameIndex].GetComponentInChildren<TextMeshProUGUI>().text = spriteQ[FirstGameIndex];
-                btnsQ[FirstGameIndex].GetComponentInChildren<TextMeshProUGUI>().enabled = true;
                 btnsQ[FirstGameIndex].GetComponent<Image>().sprite = images[FirstGameIndex];
                 btnsQ[FirstGameIndex].interactable = false;
                 btnsQ[FirstGameIndex].GetComponent<Animator>().Play("QuestionAnim");
@@ -136,8 +188,6 @@ public class MemoryMatchController : MonoBehaviour
                 secondGuess = true;
                 SecondGameIndex = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
                 secondGuessName = btnsQ[SecondGameIndex].GetComponent<Image>();
-                btnsQ[SecondGameIndex].GetComponentInChildren<TextMeshProUGUI>().enabled = true;
-                btnsQ[SecondGameIndex].GetComponentInChildren<TextMeshProUGUI>().text = spriteQ[SecondGameIndex];
                 btnsQ[SecondGameIndex].GetComponent<Image>().sprite = images[SecondGameIndex];
                 StartCoroutine(CheckIfTheGameIsFinished());
                 btnsQ[SecondGameIndex].GetComponent<Animator>().Play("QuestionAnim");
@@ -156,8 +206,6 @@ public class MemoryMatchController : MonoBehaviour
 
             btnsQ[FirstGameIndex].interactable = false;
             btnsQ[SecondGameIndex].interactable = false;
-            btnsQ[FirstGameIndex].GetComponentInChildren<TextMeshProUGUI>().enabled = false;
-            btnsQ[SecondGameIndex].GetComponentInChildren<TextMeshProUGUI>().enabled = false;
 
             btnsQ[FirstGameIndex].image.color = new Color(0, 0, 0, 0);
             btnsQ[SecondGameIndex].image.color = new Color(0, 0, 0, 0);
@@ -168,11 +216,12 @@ public class MemoryMatchController : MonoBehaviour
         }
         else
         {
-            btnsQ[FirstGameIndex].GetComponentInChildren<TextMeshProUGUI>().enabled = false;
-            btnsQ[SecondGameIndex].GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+            btnsQ[FirstGameIndex].GetComponent<Image>().sprite = bgImage;
+            btnsQ[SecondGameIndex].GetComponent<Image>().sprite = bgImage;
             btnsQ[FirstGameIndex].interactable = true;
             score.Cal();
             audioManager.Wrong();
+            score.wrongint++;
         }
         score.attemps++;
         score.Cal();
