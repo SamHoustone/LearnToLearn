@@ -91,7 +91,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5248871, y: 0.5249109}
+  m_Offset: {x: -0.150177, y: 0.52491}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -102,7 +102,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 327.5864, y: 58.43789}
+  m_Size: {x: 202.01813, y: 198.8991}
   m_EdgeRadius: 0
 --- !u!114 &-7428455330114143343
 MonoBehaviour:
@@ -116,11 +116,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da1281edeab8ab4da5a0e2c6f72f296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Right: 6
-  Left: -6
-  Down: -1
   median: 0
+  median2: 0
   startpos: {x: 0, y: 0, z: 0}
+  raiseTheRoofGameController: {fileID: 0}
 --- !u!1 &9208258620355381737
 GameObject:
   m_ObjectHideFlags: 0
