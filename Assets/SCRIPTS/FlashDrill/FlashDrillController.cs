@@ -92,12 +92,16 @@ public class FlashDrillController : MonoBehaviour
         }
 
 
+        Go2();
+
+
+    }
+   public void Go2 ()
+    {
         Shuffle(Questionstext, Questionsprite);
         Shuffle2(Answerstext, Answersprite);
         GetButtonsQ();
         GetButtonsA();
-
-
     }
     public void Start()
     {

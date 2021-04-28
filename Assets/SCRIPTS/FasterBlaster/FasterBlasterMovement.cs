@@ -8,12 +8,14 @@ public class FasterBlasterMovement : MonoBehaviour
     private bool moveableleft = true;
     private bool moveableright = true;
 
-    private float Right = 12;
-    private float Left = -12;
+    private float Right = 0.050f;
+    private float Left = -0.050f;
 
     private Score score;
     public Transform sposition;
     private AudioManager audioManager;
+
+    public LineRenderer lr;
 
     private FasterBlasterController fasterBlasterController;
     // Start is called before the first frame update
@@ -27,9 +29,9 @@ public class FasterBlasterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
             {
-            Shoot();
+            StartCoroutine(Shoot());
         }
         if (moveableright == true)
         {
@@ -68,12 +70,18 @@ public class FasterBlasterMovement : MonoBehaviour
             moveableright = true;
         }
     }
-    void Shoot()
+    IEnumerator Shoot()
     {
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.up),Color.red);
         RaycastHit2D ray = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.up));
-       if(ray)
+        Draw2DRay(transform.position, ray.point);
+
+        void Draw2DRay(Vector2 startpos, Vector2 Endpos)
         {
+            lr.SetPosition(0, startpos);
+            lr.SetPosition(1, Endpos);
+        }
+       if(ray)
+       {
             if(ray.transform.GetComponent<Image>().sprite.name == transform.GetComponent<Image>().sprite.name)
             {
                 ray.transform.GetComponentInParent<FasterBlasterDown>().CorrectOrWrong();
@@ -98,6 +106,12 @@ public class FasterBlasterMovement : MonoBehaviour
             }
             score.attemps++;
             score.Cal();
+
+            lr.enabled = true;
+
+            yield return new WaitForSeconds (0.3f);
+
+            lr.enabled = false;
         }
             
     }    

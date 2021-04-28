@@ -42,13 +42,13 @@ public class Asnwer : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         Debug.Log("CORRECT");
-        flashDrillController.Start();
+        flashDrillController.Go2();
 
     }
     IEnumerator WrongWait()
     {
         yield return new WaitForSeconds(2f);
         Debug.Log("WRONG");
-        flashDrillController.Start();
+        flashDrillController.Go2();
     }
 }

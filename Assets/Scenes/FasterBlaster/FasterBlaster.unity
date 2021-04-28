@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f945c2d4eb0da4c88a5f9fa05aea44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -0.1
+  speed: -0.01
   animator: {fileID: 143952291}
 --- !u!114 &501248440
 MonoBehaviour:
@@ -1415,6 +1415,8 @@ GameObject:
   - component: {fileID: 1835281743}
   - component: {fileID: 1835281746}
   - component: {fileID: 1835281747}
+  - component: {fileID: 1835281748}
+  - component: {fileID: 1835281749}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1675,6 +1677,55 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1835281748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835281742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+--- !u!114 &1835281749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835281742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGlobal: 1
+  priority: 1.6
+  blendDistance: 0
+  weight: 0
+  sharedProfile: {fileID: 11400000, guid: 41ba26e96a2cc3a40b15da190a0f3ec2, type: 2}
 --- !u!114 &1966114649 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7341089459913058975, guid: f8c9ee2788690044f8a11e7c3d3cf379, type: 3}
@@ -1922,8 +1973,8 @@ Canvas:
   m_GameObject: {fileID: 2118119347}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1835281744}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1

@@ -6,7 +6,7 @@ public class FasterBlasterDown : MonoBehaviour
 {
     public float speed;
     private Vector3 startPos;
-    private float increaseSpeed = -0.3f;
+    private float increaseSpeed = -0.0005f;
     public Animator animator;
     private FasterBlasterController fasterBlasterController;
     // Start is called before the first frame update
@@ -33,7 +33,7 @@ public class FasterBlasterDown : MonoBehaviour
         if(collision.CompareTag("TD"))
         {
             CorrectOrWrong();
-            fasterBlasterController.Start();
+            fasterBlasterController.Go2();
             animator.Play("Fade-in");
         }
     }

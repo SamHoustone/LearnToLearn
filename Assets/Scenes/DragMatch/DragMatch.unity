@@ -1521,6 +1521,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 617720819}
     m_Modifications:
+    - target: {fileID: 5962825171830253868, guid: 4f9fd4e401e3fa04badf435c3d9e07ee, type: 3}
+      propertyPath: m_fontStyle
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 5962825171830253869, guid: 4f9fd4e401e3fa04badf435c3d9e07ee, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1559,11 +1563,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5962825171830253869, guid: 4f9fd4e401e3fa04badf435c3d9e07ee, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.6
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 5962825171830253869, guid: 4f9fd4e401e3fa04badf435c3d9e07ee, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.6
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 5962825171830253869, guid: 4f9fd4e401e3fa04badf435c3d9e07ee, type: 3}
       propertyPath: m_LocalPosition.x
