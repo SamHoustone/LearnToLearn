@@ -10,7 +10,7 @@ public class RaiseTheRoofMovement : MonoBehaviour
 
     private float Right = 12;
     private float Left = -12;
-    private float Down = -6;
+    private float Down = -0.01f;
 
     private Score score;
 
@@ -75,11 +75,11 @@ public class RaiseTheRoofMovement : MonoBehaviour
         }
           if(Input.GetKey(KeyCode.DownArrow))
         {
-            transform.position = transform.position + new Vector3(0, Down*0.3f, 0);
+            transform.position = transform.position + new Vector3(0, Down* -0.0005f, 0);
         }
           else
         {
-            transform.position = transform.position + new Vector3(0, -0.1f, 0);
+            transform.position = transform.position + new Vector3(0, -0.01f, 0);
         }
 
     }

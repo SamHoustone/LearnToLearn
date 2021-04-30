@@ -169,11 +169,11 @@ public class RaiseTheRoofGameController : MonoBehaviour
 
     public void Up()
     {
-        panel.transform.position = panel.transform.position + new Vector3(0, 45, 0);
+        panel.transform.position = panel.transform.position + new Vector3(0, panel.transform.localScale.y/2, 0);
     }
     public void Down()
     {
-        panel.transform.position = panel.transform.position + new Vector3(0,-45, 0);
+        panel.transform.position = panel.transform.position + new Vector3(0,-panel.transform.localScale.y/2, 0);
     }
     public void Won()
     {
