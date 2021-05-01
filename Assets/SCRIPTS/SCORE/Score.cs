@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Michsky.UI.ModernUIPack;
+using TMPro;
 
 public class Score : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class Score : MonoBehaviour
 
     public float correctper = 0;
     public float wrongper = 0;
+
+    public TextMeshProUGUI correct;
+    public TextMeshProUGUI wrong;
 
     public ProgressBar ProgressBarCorrect;
     public ProgressBar ProgressBarWrong;
@@ -27,6 +31,9 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        correct.text = correctint.ToString();
+        wrong.text = wrongint.ToString();
+
         if (correctint == PlayerPrefs.GetInt("REFERENCENUMBER"))
         {
             animator.Play("Fade-in");

@@ -24,6 +24,8 @@ public class MemoryMatchController : MonoBehaviour
     public List<string> spriteQ = new List<string>();
     public List<Sprite> images = new List<Sprite>();
 
+    public ScoreCoinAnima scoreCoinAnima;
+
     public List<Button> btnsQ = new List<Button>(); 
 
     public Animator animator;
@@ -192,6 +194,7 @@ public class MemoryMatchController : MonoBehaviour
                 StartCoroutine(CheckIfTheGameIsFinished());
                 btnsQ[SecondGameIndex].GetComponent<Animator>().Play("QuestionAnim");
 
+                scoreCoinAnima.StartCoinMove (btnsQ[SecondGameIndex].transform.position);
             }
         }    
         
@@ -222,6 +225,8 @@ public class MemoryMatchController : MonoBehaviour
             score.Cal();
             audioManager.Wrong();
             score.wrongint++;
+
+    
         }
         score.attemps++;
         score.Cal();
