@@ -8,12 +8,20 @@ public class Asnwer : MonoBehaviour
     private FlashDrillController flashDrillController;
     private Score score;
     private AudioManagerFlashDrill audioManager;
+    private ScoreCoinAnima scoreCoinAnima;
+    public TFGiver tfgiver;
     // Start is called before the first frame update
     void Start()
     {
+        tfgiver = FindObjectOfType<TFGiver>();
+        scoreCoinAnima = FindObjectOfType<ScoreCoinAnima>();
         audioManager = FindObjectOfType<Camera>().GetComponent<AudioManagerFlashDrill>();
         flashDrillController = FindObjectOfType<Canvas>().GetComponent<FlashDrillController>();
         score = FindObjectOfType<Canvas>().GetComponent<Score>();
+    }
+
+    private void Update()
+    {
     }
 
     // Update is called once per frame
@@ -26,14 +34,27 @@ public class Asnwer : MonoBehaviour
             StartCoroutine(CorrectWait());
             audioManager.Correct();
             transform.GetComponent<Animator>().Play("QuestionAnim");
+            scoreCoinAnima.StartCoinMoveCorrect(transform);
         }
         else
         {
+            
             score.wrongint++;
             score.attemps++;
             StartCoroutine(WrongWait());
             audioManager.Wrong();
             transform.GetComponent<Animator>().Play("QuestionAnim");
+            scoreCoinAnima.StartCoinMoveWrong(tfgiver.transform);
+            if(flashDrillController.Replaying)
+            {
+
+            }
+            else
+            {
+                flashDrillController.noofwrongCardGuessed++;
+            }
+
+            flashDrillController.wrongAnswers.Add(flashDrillController.Questions[0].sprite);
         }
         
     }
@@ -42,13 +63,13 @@ public class Asnwer : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         Debug.Log("CORRECT");
-        flashDrillController.Go2();
+        flashDrillController.Text();
 
     }
     IEnumerator WrongWait()
     {
         yield return new WaitForSeconds(2f);
         Debug.Log("WRONG");
-        flashDrillController.Go2();
+        flashDrillController.Text();
     }
 }

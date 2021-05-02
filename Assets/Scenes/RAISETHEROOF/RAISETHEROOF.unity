@@ -1349,6 +1349,7 @@ GameObject:
   - component: {fileID: 1302944838}
   - component: {fileID: 1302944839}
   - component: {fileID: 1302944840}
+  - component: {fileID: 1302944841}
   m_Layer: 5
   m_Name: ---GameManager---
   m_TagString: Untagged
@@ -1515,6 +1516,8 @@ MonoBehaviour:
   wrongint: 0
   correctper: 0
   wrongper: 0
+  correct: {fileID: 0}
+  wrong: {fileID: 0}
   ProgressBarCorrect: {fileID: 1600005323}
   ProgressBarWrong: {fileID: 706362560}
   animator: {fileID: 0}
@@ -1530,6 +1533,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d4cd5d029b7f947bcd35ef18fd2275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1302944841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302944832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ab25090b176194a8ba78f07022559e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  target: {fileID: 0}
+  coinPrefab: {fileID: 860233880636498876, guid: 3a4cad3c55107c242ba1da1cf542a162, type: 3}
+  camera: {fileID: 0}
 --- !u!1 &1314214024
 GameObject:
   m_ObjectHideFlags: 0

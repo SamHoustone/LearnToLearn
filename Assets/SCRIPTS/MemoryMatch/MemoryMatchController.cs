@@ -26,7 +26,8 @@ public class MemoryMatchController : MonoBehaviour
 
     public ScoreCoinAnima scoreCoinAnima;
 
-    public List<Button> btnsQ = new List<Button>(); 
+    public List<Button> btnsQ = new List<Button>();
+    public Transform Logo;
 
     public Animator animator;
     private Score score;
@@ -48,11 +49,11 @@ public class MemoryMatchController : MonoBehaviour
         WWW imageQ1 = new WWW("http://localhost/ll/1.jpeg");
         WWW imageQ2 = new WWW("http://localhost/ll/2.jpeg");
         WWW imageQ3 = new WWW("http://localhost/ll/3.jpeg");
-        WWW imageQ4 = new WWW("http://localhost/ll/6.jpeg");
-        WWW imageQ5 = new WWW("http://localhost/ll/7.jpeg");
-        WWW imageQ6 = new WWW("http://localhost/ll/8.jpeg");
-        WWW imageQ7 = new WWW("http://localhost/ll/9.jpeg");
-        WWW imageQ8 = new WWW("http://localhost/ll/10.jpeg");
+        WWW imageQ4 = new WWW("http://localhost/ll/4.jpeg");
+        WWW imageQ5 = new WWW("http://localhost/ll/5.jpeg");
+        WWW imageQ6 = new WWW("http://localhost/ll/6.jpeg");
+        WWW imageQ7 = new WWW("http://localhost/ll/7.jpeg");
+        WWW imageQ8 = new WWW("http://localhost/ll/8.jpeg");
 
         yield return imageQ1;
 
@@ -193,8 +194,6 @@ public class MemoryMatchController : MonoBehaviour
                 btnsQ[SecondGameIndex].GetComponent<Image>().sprite = images[SecondGameIndex];
                 StartCoroutine(CheckIfTheGameIsFinished());
                 btnsQ[SecondGameIndex].GetComponent<Animator>().Play("QuestionAnim");
-
-                scoreCoinAnima.StartCoinMove (btnsQ[SecondGameIndex].transform.position);
             }
         }    
         
@@ -216,6 +215,8 @@ public class MemoryMatchController : MonoBehaviour
             score.correctint++;
 
             audioManager.Correct();
+
+            scoreCoinAnima.StartCoinMoveCorrect(btnsQ[SecondGameIndex].transform);
         }
         else
         {
@@ -225,8 +226,8 @@ public class MemoryMatchController : MonoBehaviour
             score.Cal();
             audioManager.Wrong();
             score.wrongint++;
+            scoreCoinAnima.StartCoinMoveWrong(Logo);
 
-    
         }
         score.attemps++;
         score.Cal();

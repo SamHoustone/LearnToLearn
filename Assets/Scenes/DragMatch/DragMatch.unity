@@ -1294,6 +1294,7 @@ GameObject:
   - component: {fileID: 1731334591}
   - component: {fileID: 1731334593}
   - component: {fileID: 1731334592}
+  - component: {fileID: 1731334594}
   m_Layer: 3
   m_Name: ---GameManager---
   m_TagString: Untagged
@@ -1464,9 +1465,27 @@ MonoBehaviour:
   wrongint: 0
   correctper: 0
   wrongper: 0
+  correct: {fileID: 0}
+  wrong: {fileID: 0}
   ProgressBarCorrect: {fileID: 263181790}
   ProgressBarWrong: {fileID: 480018292}
   animator: {fileID: 2011836538}
+--- !u!114 &1731334594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731334585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ab25090b176194a8ba78f07022559e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  target: {fileID: 0}
+  coinPrefab: {fileID: 860233880636498876, guid: 3a4cad3c55107c242ba1da1cf542a162, type: 3}
+  camera: {fileID: 0}
 --- !u!1 &2009148126
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,7 +1749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 887049795668603935, guid: 9a080e7d5a2eb684686b4a0036157c05, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 370
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 887049795668603935, guid: 9a080e7d5a2eb684686b4a0036157c05, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2146,7 +2165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7511041332203624350, guid: 9a080e7d5a2eb684686b4a0036157c05, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 360
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7511041332203624350, guid: 9a080e7d5a2eb684686b4a0036157c05, type: 3}
       propertyPath: m_AnchoredPosition.y

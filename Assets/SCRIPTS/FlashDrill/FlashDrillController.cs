@@ -18,8 +18,12 @@ public class FlashDrillController : MonoBehaviour
     public List<TextMeshProUGUI> AnswersText = new List<TextMeshProUGUI>();
     public List<TextMeshProUGUI> QuestionsText = new List<TextMeshProUGUI>();
 
+    private int cardsLeft;
+    public TextMeshProUGUI cardsTLeftText;
+    public int noofwrongCardGuessed;
 
-    public GameObject customiser;
+    public List<Sprite> wrongAnswers = new List<Sprite>();
+
     public Animator animator;
     private Score score;
 
@@ -27,6 +31,8 @@ public class FlashDrillController : MonoBehaviour
 
     private int reference2;
     private string reference;
+
+    public bool Replaying = false;
 
     public AudioClip swoosh;
     public AudioSource audioSource;
@@ -36,6 +42,7 @@ public class FlashDrillController : MonoBehaviour
     {
         reference2 = PlayerPrefs.GetInt("REFERENCENUMBER");
         reference = PlayerPrefs.GetString("REFERENCE");
+        cardsLeft = reference2;
 
         for (int i = 0; i < reference2; i++)
         {
@@ -58,11 +65,11 @@ public class FlashDrillController : MonoBehaviour
         WWW imageQ1 = new WWW("http://localhost/ll/1.jpeg");
         WWW imageQ2 = new WWW("http://localhost/ll/2.jpeg");
         WWW imageQ3 = new WWW("http://localhost/ll/3.jpeg");
-        WWW imageQ4 = new WWW("http://localhost/ll/6.jpeg");
-        WWW imageQ5 = new WWW("http://localhost/ll/7.jpeg");
-        WWW imageQ6 = new WWW("http://localhost/ll/8.jpeg");
-        WWW imageQ7 = new WWW("http://localhost/ll/9.jpeg");
-        WWW imageQ8 = new WWW("http://localhost/ll/10.jpeg");
+        WWW imageQ4 = new WWW("http://localhost/ll/4.jpeg");
+        WWW imageQ5 = new WWW("http://localhost/ll/5.jpeg");
+        WWW imageQ6 = new WWW("http://localhost/ll/6.jpeg");
+        WWW imageQ7 = new WWW("http://localhost/ll/7.jpeg");
+        WWW imageQ8 = new WWW("http://localhost/ll/8.jpeg");
 
         yield return imageQ1;
 
@@ -90,16 +97,16 @@ public class FlashDrillController : MonoBehaviour
         {
             Questionsprite[i].name = i.ToString();
         }
-
-
         Go2();
-
-
     }
    public void Go2 ()
     {
         Shuffle(Questionstext, Questionsprite);
         Shuffle2(Answerstext, Answersprite);
+        Text();
+    }
+    public void Text()
+    {
         GetButtonsQ();
         GetButtonsA();
     }
@@ -118,6 +125,19 @@ public class FlashDrillController : MonoBehaviour
     }
     private void Update()
     {
+        if(cardsLeft == 0)
+        {
+            Replaying = true;
+        }
+        if(Replaying == true)
+        {
+            cardsTLeftText.text = "Replaying : " + noofwrongCardGuessed.ToString();
+        }
+        else
+        {
+            cardsTLeftText.text = "Cards Remaining : " + cardsLeft.ToString();
+        }
+
         if(number == 8)
         {
             number = 0;
@@ -127,15 +147,31 @@ public class FlashDrillController : MonoBehaviour
     {
         GameObject[] objectsQ = GameObject.FindGameObjectsWithTag("FlashDrillQ");
 
-        for (int i = 0; i < objectsQ.Length; i++)
+        if(Replaying == false)
         {
-            QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
-            Questions.Add(objectsQ[i].GetComponent<Image>());
+            for (int i = 0; i < objectsQ.Length; i++)
+            {
+                QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
+                Questions.Add(objectsQ[i].GetComponent<Image>());
 
-            //objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = Questionstext[i];
-            objectsQ[i].GetComponent<Image>().sprite = Questionsprite[number];
-            number++;
+                //objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = Questionstext[i];
+                objectsQ[i].GetComponent<Image>().sprite = Questionsprite[number];
+                number++;
+            }
         }
+        else
+        {
+            for (int i = 0; i < objectsQ.Length; i++)
+            {
+                QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
+                Questions.Add(objectsQ[i].GetComponent<Image>());
+
+                //objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = Questionstext[i];
+                objectsQ[i].GetComponent<Image>().sprite = wrongAnswers[number];
+                number++;
+            }
+        }
+        
     }
     public void GetButtonsA()
     {
@@ -188,6 +224,15 @@ public class FlashDrillController : MonoBehaviour
         audioSource.Play();
         animator.Play("right");
         score.Cal();
+
+        if(Replaying == true)
+        {
+            noofwrongCardGuessed--;
+        }
+        else
+        {
+            cardsLeft--;
+        }
     }
     public void Wrong()
     {
@@ -195,5 +240,6 @@ public class FlashDrillController : MonoBehaviour
         audioSource.Play();
         animator.Play("left");
         score.Cal();
+        cardsLeft--;
     }
 }
