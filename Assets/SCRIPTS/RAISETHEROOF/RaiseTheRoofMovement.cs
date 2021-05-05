@@ -25,10 +25,15 @@ public class RaiseTheRoofMovement : MonoBehaviour
     private RaiseTheRoofGameController canvas;
     private AudioManager audioManager;
 
+    private ScoreCoinAnima scoreCoinAnima;
+    private TFGiver tfgiver;
+
     public RaiseTheRoofGameController raiseTheRoofGameController;
     // Start is called before the first frame update
     void Start()
     {
+        tfgiver = FindObjectOfType<TFGiver>();
+        scoreCoinAnima = FindObjectOfType<ScoreCoinAnima>();
         audioManager = FindObjectOfType<Camera>().GetComponent<AudioManager>();
         score = FindObjectOfType<Canvas>().GetComponent<Score>();
         startpos = transform.position;
@@ -98,15 +103,18 @@ public class RaiseTheRoofMovement : MonoBehaviour
         {
             if (collision.GetComponent<Image>().sprite.name == GetComponent<Image>().sprite.name)
             {
+                                raiseTheRoofGameController.Up();
                 raiseTheRoofGameController.Go2();
                 Debug.Log("Correct");
                 score.correctint++;
                 transform.position = startpos;
-                raiseTheRoofGameController.Up();
                 audioManager.Correct();
                 collision.GetComponent<Animator>().Play("QuestionAnim");
                 median2 = 0;
                 median++;
+
+
+                scoreCoinAnima.StartCoinMoveCorrect(transform);
             }
             else
             {
@@ -117,12 +125,17 @@ public class RaiseTheRoofMovement : MonoBehaviour
                 collision.GetComponent<Animator>().Play("QuestionAnim");
                 score.wrongint++;
                 median2 = 0;
-                if(median > 0)
+                if (median > 0)
                 {
                     median--;
                     raiseTheRoofGameController.Down();
                 }
-               
+                else
+                {
+                    raiseTheRoofGameController.number++;
+                }
+                scoreCoinAnima.StartCoinMoveWrong(tfgiver.transform);
+
 
             }
             if(median == 12)

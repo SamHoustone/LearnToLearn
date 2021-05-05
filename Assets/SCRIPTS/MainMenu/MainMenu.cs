@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
 
     public void DragMatch()
     {
+        PlayerPrefs.SetString("s", "1");
         SceneManager.LoadScene("DragMatch");
     }
 

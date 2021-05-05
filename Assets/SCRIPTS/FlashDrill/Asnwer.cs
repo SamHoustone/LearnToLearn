@@ -10,6 +10,8 @@ public class Asnwer : MonoBehaviour
     private AudioManagerFlashDrill audioManager;
     private ScoreCoinAnima scoreCoinAnima;
     public TFGiver tfgiver;
+
+    private bool canInteract = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,36 +29,40 @@ public class Asnwer : MonoBehaviour
     // Update is called once per frame
     public void CheckIfCorrect()
     {
-        if (GetComponent<Image>().sprite.name == flashDrillController.Questions[0].sprite.name)
+        if(canInteract == true)
         {
-            score.correctint++;
-            score.attemps++;
-            StartCoroutine(CorrectWait());
-            audioManager.Correct();
-            transform.GetComponent<Animator>().Play("QuestionAnim");
-            scoreCoinAnima.StartCoinMoveCorrect(transform);
-        }
-        else
-        {
-            
-            score.wrongint++;
-            score.attemps++;
-            StartCoroutine(WrongWait());
-            audioManager.Wrong();
-            transform.GetComponent<Animator>().Play("QuestionAnim");
-            scoreCoinAnima.StartCoinMoveWrong(tfgiver.transform);
-            if(flashDrillController.Replaying)
+            if (GetComponent<Image>().sprite.name == flashDrillController.Questions[0].sprite.name)
             {
-
+                score.correctint++;
+                score.attemps++;
+                StartCoroutine(CorrectWait());
+                audioManager.Correct();
+                transform.GetComponent<Animator>().Play("QuestionAnim");
+                scoreCoinAnima.StartCoinMoveCorrect(transform);
             }
             else
             {
-                flashDrillController.noofwrongCardGuessed++;
+
+                score.wrongint++;
+                score.attemps++;
+                StartCoroutine(WrongWait());
+                audioManager.Wrong();
+                transform.GetComponent<Animator>().Play("QuestionAnim");
+                scoreCoinAnima.StartCoinMoveWrong(tfgiver.transform);
+                if (flashDrillController.Replaying)
+                {
+
+                }
+                else
+                {
+                    flashDrillController.noofwrongCardGuessed++;
+                }
+
+                flashDrillController.wrongAnswers.Add(flashDrillController.Questions[0].sprite);
             }
 
-            flashDrillController.wrongAnswers.Add(flashDrillController.Questions[0].sprite);
+            canInteract = false;
         }
-        
     }
 
     IEnumerator CorrectWait()
@@ -65,11 +71,20 @@ public class Asnwer : MonoBehaviour
         Debug.Log("CORRECT");
         flashDrillController.Text();
 
+        yield return new WaitForSeconds(0.6f);
+
+        canInteract = true;
+
     }
     IEnumerator WrongWait()
     {
         yield return new WaitForSeconds(2f);
         Debug.Log("WRONG");
         flashDrillController.Text();
+
+        yield return new WaitForSeconds(0.6f);
+
+        canInteract = true;
+
     }
 }

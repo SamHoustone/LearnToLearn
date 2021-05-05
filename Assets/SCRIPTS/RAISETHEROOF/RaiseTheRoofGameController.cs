@@ -58,11 +58,11 @@ public class RaiseTheRoofGameController : MonoBehaviour
         WWW imageQ1 = new WWW("http://localhost/ll/1.jpeg");
         WWW imageQ2 = new WWW("http://localhost/ll/2.jpeg");
         WWW imageQ3 = new WWW("http://localhost/ll/3.jpeg");
-        WWW imageQ4 = new WWW("http://localhost/ll/6.jpeg");
-        WWW imageQ5 = new WWW("http://localhost/ll/7.jpeg");
-        WWW imageQ6 = new WWW("http://localhost/ll/8.jpeg");
-        WWW imageQ7 = new WWW("http://localhost/ll/9.jpeg");
-        WWW imageQ8 = new WWW("http://localhost/ll/10.jpeg");
+        WWW imageQ4 = new WWW("http://localhost/ll/4.jpeg");
+        WWW imageQ5 = new WWW("http://localhost/ll/5.jpeg");
+        WWW imageQ6 = new WWW("http://localhost/ll/6.jpeg");
+        WWW imageQ7 = new WWW("http://localhost/ll/7.jpeg");
+        WWW imageQ8 = new WWW("http://localhost/ll/8.jpeg");
 
         yield return imageQ1;
 
@@ -89,14 +89,15 @@ public class RaiseTheRoofGameController : MonoBehaviour
         {
             Questionsprite[i].name = i.ToString();
         }
+        Shuffleee();
         Go2();
+
     }
      
     public void Go2()
     {
-        Shuffleee();
-        GetButtonsQ();
         GetButtonsA();
+        GetButtonsQ();
     }
 
 
@@ -115,18 +116,14 @@ public class RaiseTheRoofGameController : MonoBehaviour
     }
     public void GetButtonsQ()
     {
-        GameObject[] objectsQ = GameObject.FindGameObjectsWithTag("RaiseTheRoofQ");
+        GameObject[] objectsQ = GameObject.FindGameObjectsWithTag("RaiseTheRoofQ"); 
 
         for (int i = 0; i < objectsQ.Length; i++)
         {
             QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
             Questions.Add(objectsQ[i].GetComponent<Image>());
-
-            int range = Random.Range(0, 3);
-
             objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
-            Questions[i].sprite = Questionsprite[range];
-
+            Questions[i].sprite = Questionsprite[number];
         }
     }
     public void GetButtonsA()
@@ -135,10 +132,14 @@ public class RaiseTheRoofGameController : MonoBehaviour
 
         for (int i = 0; i < objectsA.Length; i++)
         {
+            int number = 0;
             AnswersText.Add(objectsA[i].GetComponentInChildren<TextMeshProUGUI>());
             Answers.Add(objectsA[i].GetComponent<Image>());
 
-            objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[i];
+            int range = Random.Range(0, 4);
+
+
+            objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[number];
             Answers[i].sprite = Answersprite[i];
         }
     }
@@ -170,10 +171,12 @@ public class RaiseTheRoofGameController : MonoBehaviour
     public void Up()
     {
         panel.transform.position = panel.transform.position + new Vector3(0, panel.transform.localScale.y/2, 0);
+        number++;
     }
     public void Down()
     {
         panel.transform.position = panel.transform.position + new Vector3(0,-panel.transform.localScale.y/2, 0);
+        number++;
     }
     public void Won()
     {

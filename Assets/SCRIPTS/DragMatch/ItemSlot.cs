@@ -8,9 +8,13 @@ public class ItemSlot : MonoBehaviour ,IDropHandler
 {
     private Score score;
     private AudioManager audioManager;
+    private ScoreCoinAnima scoreCoinAnima;
+    private TFGiver tFGiver;
     // Start is called before the first frame update
     void Start()
     {
+        tFGiver = FindObjectOfType<TFGiver>();
+        scoreCoinAnima = FindObjectOfType<ScoreCoinAnima>();
         audioManager = FindObjectOfType<Camera>().GetComponent<AudioManager>();
         score = FindObjectOfType<Canvas>().GetComponent<Score>();
     }
@@ -22,6 +26,7 @@ public class ItemSlot : MonoBehaviour ,IDropHandler
             eventData.pointerDrag.GetComponent<RectTransform>().gameObject.SetActive(false);
             score.correctint++;
             audioManager.Correct();
+            scoreCoinAnima.StartCoinMoveCorrect(transform);
             GetComponent<Animator>().Play("QuestionAnim");
         }
         else
@@ -30,6 +35,7 @@ public class ItemSlot : MonoBehaviour ,IDropHandler
             score.wrongint++;
             audioManager.Wrong();
             GetComponent<Animator>().Play("QuestionAnim");
+            scoreCoinAnima.StartCoinMoveWrong(tFGiver.transform);
         }
 
         score.attemps++;

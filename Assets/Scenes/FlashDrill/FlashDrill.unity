@@ -1725,6 +1725,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1812381060462626331, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 558702523}
+    - target: {fileID: 1812381060462626331, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: FlashDrill
+      objectReference: {fileID: 0}
     - target: {fileID: 1868743236111648165, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1747,9 +1755,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2533626185050259353, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
       propertyPath: m_text
-      value: 'YOUR SCORE!
-
-'
+      value: YOUR SCORE!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533626185050259353, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
+      propertyPath: m_fontSize
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533626185050259353, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533626185050259353, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 3127301647141520580, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1872,6 +1890,14 @@ PrefabInstance:
     - target: {fileID: 5526861791679115176, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
       propertyPath: m_Name
       value: MainUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6289933400486216321, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 558702523}
+    - target: {fileID: 6289933400486216321, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Mainmenu
       objectReference: {fileID: 0}
     - target: {fileID: 6289933400486216327, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
       propertyPath: m_AnchorMax.y
