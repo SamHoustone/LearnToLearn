@@ -15,19 +15,21 @@ public class AddImageDrag : MonoBehaviour
     public GameObject questionprefabS;
 
     public TextMeshProUGUI topicname;
-    public Switch switche;
+
+    private string one;
+
     // Start is called before the first frame update
-    void Awake()
+    void Awake()      
     {
-        switche = FindObjectOfType<Switch>();
+        one = PlayerPrefs.GetString("s");
         topicname.text = PlayerPrefs.GetString("REFERENCE");
-        Debug.Log(PlayerPrefs.GetInt("REFERENCENUMBER"));
+        Debug.Log(PlayerPrefs.GetInt("REFERENCENUMBER"));  
 
         Com();       
     }
     public void Com()
     {
-        if (PlayerPrefs.GetString("s") == "0")
+        if (one == "false")
         {
             for (int i = 0; i < PlayerPrefs.GetInt("REFERENCENUMBER"); i++)
             {
@@ -43,7 +45,7 @@ public class AddImageDrag : MonoBehaviour
                 questionGo.transform.SetParent(answer, false);
             }
         }
-        if (PlayerPrefs.GetString("s") == "1")
+        if (one == "true")
         {
             for (int i = 0; i < PlayerPrefs.GetInt("REFERENCENUMBER"); i++)
             {

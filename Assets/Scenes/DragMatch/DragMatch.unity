@@ -621,11 +621,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 74f5dce0322385c46a138b32ff69587b, type: 3}
   - {fileID: 21300000, guid: 801876c7282632e459c833da127ef487, type: 3}
   - {fileID: 21300000, guid: 1fd2c829e47538d4995878b89c5eb6c9, type: 3}
---- !u!95 &123788743 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4187069872890093765, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
-  m_PrefabInstance: {fileID: 1412813942}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &182030212
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,6 +1043,7 @@ GameObject:
   - component: {fileID: 490881593}
   - component: {fileID: 490881592}
   - component: {fileID: 490881591}
+  - component: {fileID: 490881594}
   m_Layer: 5
   m_Name: Example Button (3)
   m_TagString: Untagged
@@ -1119,33 +1115,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 123788743}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: Play
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Fade-in
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1731334595}
         m_TargetAssemblyTypeName: Switch, Assembly-CSharp
         m_MethodName: SwitchON
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1731334592}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: DragMatch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1193,6 +1165,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490881589}
   m_CullTransparentMesh: 1
+--- !u!114 &490881594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490881589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cdb7c957549f8844898399909e79fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &499717850
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,6 +1265,7 @@ GameObject:
   - component: {fileID: 749005518}
   - component: {fileID: 749005519}
   - component: {fileID: 749005520}
+  - component: {fileID: 749005521}
   m_Layer: 3
   m_Name: Question
   m_TagString: Untagged
@@ -1327,7 +1312,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 1
-  m_CellSize: {x: 196.37, y: 50}
+  m_CellSize: {x: 1501, y: 150}
   m_Spacing: {x: 10, y: 20}
   m_Constraint: 2
   m_ConstraintCount: 2
@@ -1350,6 +1335,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &749005521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749005517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f07aebeb11a5cec4eaf13f81a52154d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1105265800 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6289933400035348065, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
@@ -1630,7 +1627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7000008999136839426, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 7000008999136839426, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1682,7 +1679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8187144635164428898, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 370
       objectReference: {fileID: 0}
     - target: {fileID: 8187144635164428898, guid: ff9c20dae655c5a4987977ab11fa1169, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1904,7 +1901,6 @@ MonoBehaviour:
   answerprefabS: {fileID: 6605642379413109832, guid: b7d0f4ffbbd01b94fa82b76ce480fbce, type: 3}
   questionprefabS: {fileID: 8631632333043448643, guid: 0cc3c4f91b65b6148a48e83ca6403c80, type: 3}
   topicname: {fileID: 1815883512}
-  switche: {fileID: 0}
 --- !u!114 &1731334591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2007,6 +2003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Q: {fileID: 749005520}
   A: {fileID: 2009148129}
+  one: 
   isSwitch: 0
 --- !u!95 &1731334596
 Animator:
@@ -2244,6 +2241,7 @@ GameObject:
   - component: {fileID: 2009148127}
   - component: {fileID: 2009148128}
   - component: {fileID: 2009148129}
+  - component: {fileID: 2009148130}
   m_Layer: 3
   m_Name: Answer
   m_TagString: Untagged
@@ -2313,3 +2311,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2009148130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009148126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd4d1aeb5a7d98d438fa6d7c95a438d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
