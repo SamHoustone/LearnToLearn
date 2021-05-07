@@ -114,7 +114,7 @@ public class RaiseTheRoofMovement : MonoBehaviour
                 median++;
 
 
-                scoreCoinAnima.StartCoinMoveCorrect(transform);
+                scoreCoinAnima.StartCoinMoveCorrect(collision.transform);
             }
             else
             {

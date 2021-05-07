@@ -30,10 +30,13 @@ public class RaiseTheRoofGameController : MonoBehaviour
     private int reference2;
     private string reference;
 
+    private string one;
+
     public int number = 0;
     // Start is called before the first frame update
     private void Awake()
     {
+        one = PlayerPrefs.GetString("RR");
         addImageRaiseTheRoof = GetComponent<AddImageRaiseTheRoof>();
 
         reference2 = PlayerPrefs.GetInt("REFERENCENUMBER");
@@ -90,13 +93,13 @@ public class RaiseTheRoofGameController : MonoBehaviour
         {
             Questionsprite[i].name = i.ToString();
         }
-        Shuffleee();
         Go2();
 
     }
      
     public void Go2()
     {
+        Shuffleee();
         GetButtonsA();
         GetButtonsQ();
     }
@@ -129,28 +132,54 @@ public class RaiseTheRoofGameController : MonoBehaviour
     public void GetButtonsQ()
     {
         GameObject[] objectsQ = GameObject.FindGameObjectsWithTag("RaiseTheRoofQ"); 
-
-        for (int i = 0; i < objectsQ.Length; i++)
+        if(one == "false")
         {
-            QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
-            Questions.Add(objectsQ[i].GetComponent<Image>());
-            objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
-            Questions[i].sprite = Questionsprite[number];
+            for (int i = 0; i < objectsQ.Length; i++)
+            {
+                QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
+                Questions.Add(objectsQ[i].GetComponent<Image>());
+                objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
+                Questions[i].sprite = Questionsprite[i];
+            }
         }
+        else
+        {
+            for (int i = 0; i < objectsQ.Length; i++)
+            {
+                QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
+                Questions.Add(objectsQ[i].GetComponent<Image>());
+                objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[i];
+                Questions[i].sprite = Answersprite[i];
+            }
+        }
+       
     }
     public void GetButtonsA()
     {
         GameObject[] objectsA = GameObject.FindGameObjectsWithTag("RaiseTheRoofA");
-
-        for (int i = 0; i < objectsA.Length; i++)
+        if (one == "false")
         {
-            AnswersText.Add(objectsA[i].GetComponentInChildren<TextMeshProUGUI>());
-            Answers.Add(objectsA[i].GetComponent<Image>());
+            for (int i = 0; i < objectsA.Length; i++)
+            {
+                AnswersText.Add(objectsA[i].GetComponentInChildren<TextMeshProUGUI>());
+                Answers.Add(objectsA[i].GetComponent<Image>());
 
-            objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[range];
-            Answers[i].sprite = Answersprite[range];
-
+                objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[i];
+                Answers[i].sprite = Answersprite[i];
+            }
         }
+        else
+        {
+            for (int i = 0; i < objectsA.Length; i++)
+            {
+                AnswersText.Add(objectsA[i].GetComponentInChildren<TextMeshProUGUI>());
+                Answers.Add(objectsA[i].GetComponent<Image>());
+
+                objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
+                Answers[i].sprite = Questionsprite[i];
+            }
+        }
+        
     }
     public void Shuffle(List<string> list, List<Sprite> list2, List<string> list3, List<Sprite> list4)
     {

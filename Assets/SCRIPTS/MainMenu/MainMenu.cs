@@ -36,6 +36,7 @@ public class MainMenu : MonoBehaviour
 
     public void RaiseTheRoof()
     {
+        PlayerPrefs.SetString("RR", "true");
         SceneManager.LoadScene("RAISETHEROOF");
     }
 

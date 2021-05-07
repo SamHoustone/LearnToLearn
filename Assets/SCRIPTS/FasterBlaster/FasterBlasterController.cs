@@ -24,6 +24,8 @@ public class FasterBlasterController : MonoBehaviour
     public GameObject customiser;
     public Animator Lost;
 
+    private string one;
+
     private int reference2;
     private string reference;
     // Start is called before the first frame update
