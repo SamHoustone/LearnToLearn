@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Switch : MonoBehaviour
+public class SwitchDM : MonoBehaviour
 {
     public Animator Q;
     public Animator A;
@@ -17,17 +17,15 @@ public class Switch : MonoBehaviour
 
         if (one == "true")
         {
-            PlayerPrefs.SetString("s", "false");
+            PlayerPrefs.SetString("DM", "false");
             isSwitch = true;
-            Debug.Log("NICE2");
             SceneManager.LoadScene("DragMatch");
 
         }
         if (one == "false")
         {
-            PlayerPrefs.SetString("s", "true");
+            PlayerPrefs.SetString("DM", "true");
             isSwitch = false;
-            Debug.Log("NICE");
             SceneManager.LoadScene("DragMatch");
         }
 
@@ -35,9 +33,9 @@ public class Switch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        one = PlayerPrefs.GetString("s");
+        one = PlayerPrefs.GetString("DM");
 
-        Debug.Log(PlayerPrefs.GetString("s"));
+        Debug.Log(PlayerPrefs.GetString("DM"));
         if (one == "true")
         {
             Q.Play("SwitchQ");
@@ -46,7 +44,7 @@ public class Switch : MonoBehaviour
         else
         {
             Q.Play("SwitchQ2");
-            A.Play("SwitchA2    ");
+            A.Play("SwitchA2");
         }    
     }
 }

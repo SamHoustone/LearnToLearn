@@ -23,14 +23,16 @@ public class FlashDrillController : MonoBehaviour
     public int noofwrongCardGuessed;
 
     public List<Sprite> wrongAnswers = new List<Sprite>();
+    public List<string> wrongAnswersText = new List<string>();
 
     public Animator animator;
     private Score score;
 
-    private int number = 0;
+    public int number = 0;
 
     private int reference2;
     private string reference;
+    private string one;
 
     public bool Replaying = false;
 
@@ -40,6 +42,7 @@ public class FlashDrillController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        one = PlayerPrefs.GetString("FD");
         reference2 = PlayerPrefs.GetInt("REFERENCENUMBER");
         reference = PlayerPrefs.GetString("REFERENCE");
         cardsLeft = reference2;
@@ -107,8 +110,8 @@ public class FlashDrillController : MonoBehaviour
     }
     public void Text()
     {
-        GetButtonsQ();
         GetButtonsA();
+        GetButtonsQ();
     }
     public void Start()
     {
@@ -144,47 +147,99 @@ public class FlashDrillController : MonoBehaviour
         }
     }
    public void GetButtonsQ()
-    {
-        GameObject[] objectsQ = GameObject.FindGameObjectsWithTag("FlashDrillQ");
-
-        if(Replaying == false)
+    {      
+        if (one == "false")
         {
-            for (int i = 0; i < objectsQ.Length; i++)
+            GameObject[] objectsQ = GameObject.FindGameObjectsWithTag("FlashDrillQ");
+            if (Replaying == false)
             {
-                QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
-                Questions.Add(objectsQ[i].GetComponent<Image>());
+                for (int i = 0; i < objectsQ.Length; i++)
+                {
+                    QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
+                    Questions.Add(objectsQ[i].GetComponent<Image>());
 
-                //objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = Questionstext[i];
-                objectsQ[i].GetComponent<Image>().sprite = Questionsprite[number];
-                number++;
+                    objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
+                    objectsQ[i].GetComponent<Image>().sprite = Questionsprite[number];
+                    number++;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < objectsQ.Length; i++)
+                {
+                    QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
+                    Questions.Add(objectsQ[i].GetComponent<Image>());
+
+                    objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
+                    objectsQ[i].GetComponent<Image>().sprite = wrongAnswers[number];
+                    number++;
+                }
             }
         }
         else
         {
-            for (int i = 0; i < objectsQ.Length; i++)
+            GameObject[] objectsQ = GameObject.FindGameObjectsWithTag("FlashDrillQ");
+            if (Replaying == false)
             {
-                QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
-                Questions.Add(objectsQ[i].GetComponent<Image>());
+                for (int i = 0; i < objectsQ.Length; i++)
+                {
+                    Debug.Log("Q");
 
-                //objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = Questionstext[i];
-                objectsQ[i].GetComponent<Image>().sprite = wrongAnswers[number];
-                number++;
+                    QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
+                    Questions.Add(objectsQ[i].GetComponent<Image>());
+
+                    objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[number];
+                    objectsQ[i].GetComponent<Image>().sprite = Answersprite[number];
+                    number++;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < objectsQ.Length; i++)
+                {
+                    Debug.Log("Q");
+
+                    QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
+                    Questions.Add(objectsQ[i].GetComponent<Image>());
+
+                    objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[number];
+                    objectsQ[i].GetComponent<Image>().sprite = Answersprite[number];
+                    number++;
+                }
             }
         }
+        
         
     }
     public void GetButtonsA()
     {
-        GameObject[] objectsA = GameObject.FindGameObjectsWithTag("FlashDrillA");
-
-        for (int i = 0; i < objectsA.Length; i++)
+        Debug.Log("A");
+        
+            GameObject[] objectsA = GameObject.FindGameObjectsWithTag("FlashDrillA");
+        if(one == "false")
         {
-            AnswersText.Add(objectsA[i].GetComponentInChildren<TextMeshProUGUI>());
-            Answers.Add(objectsA[i].GetComponent<Image>());
+            for (int i = 0; i < objectsA.Length; i++)
+            {
+                AnswersText.Add(objectsA[i].GetComponentInChildren<TextMeshProUGUI>());
+                Answers.Add(objectsA[i].GetComponent<Image>());
 
-            objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[i];
-            objectsA[i].GetComponent<Image>().sprite = Answersprite[i];
+                objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[i];
+                objectsA[i].GetComponent<Image>().sprite = Answersprite[i];
+            }
         }
+        else
+        {
+            for (int i = 0; i < objectsA.Length; i++)
+            {
+                AnswersText.Add(objectsA[i].GetComponentInChildren<TextMeshProUGUI>());
+                Answers.Add(objectsA[i].GetComponent<Image>());
+
+                objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
+                objectsA[i].GetComponent<Image>().sprite = Questionsprite[i];
+
+            }
+        }
+          
     }
     public void Shuffle(List<string> list, List<Sprite> list2)
     {

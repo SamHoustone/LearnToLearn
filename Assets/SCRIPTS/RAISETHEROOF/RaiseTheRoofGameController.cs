@@ -25,6 +25,7 @@ public class RaiseTheRoofGameController : MonoBehaviour
     public Animator animator;
 
     public Transform[] transforms;
+    int lastValue;
 
     private int reference2;
     private string reference;
@@ -114,6 +115,17 @@ public class RaiseTheRoofGameController : MonoBehaviour
     {
       
     }
+
+    public int UniqueRandomInt(int min, int max)
+    {
+        int val = Random.Range(min, max);
+        while (lastValue == val)
+        {
+            val = Random.Range(min, max);
+        }
+        lastValue = val;
+        return val;
+    }
     public void GetButtonsQ()
     {
         GameObject[] objectsQ = GameObject.FindGameObjectsWithTag("RaiseTheRoofQ"); 
@@ -132,15 +144,12 @@ public class RaiseTheRoofGameController : MonoBehaviour
 
         for (int i = 0; i < objectsA.Length; i++)
         {
-            int number = 0;
             AnswersText.Add(objectsA[i].GetComponentInChildren<TextMeshProUGUI>());
             Answers.Add(objectsA[i].GetComponent<Image>());
 
-            int range = Random.Range(0, 4);
+            objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[range];
+            Answers[i].sprite = Answersprite[range];
 
-
-            objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[number];
-            Answers[i].sprite = Answersprite[i];
         }
     }
     public void Shuffle(List<string> list, List<Sprite> list2, List<string> list3, List<Sprite> list4)

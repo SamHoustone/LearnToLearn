@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
 
     public void DragMatch()
     {
-        PlayerPrefs.SetString("s", "false");
+        PlayerPrefs.SetString("DM", "false");
         SceneManager.LoadScene("DragMatch");
     }
 
@@ -25,6 +25,7 @@ public class MainMenu : MonoBehaviour
 
     public void FlashDrill()
     {
+        PlayerPrefs.SetString("FD", "false");
         SceneManager.LoadScene("FlashDrill");
     }
 
