@@ -6,6 +6,7 @@ public class AudioManagerFlashDrill : MonoBehaviour
 {
     public AudioClip[] correct;
     public AudioClip[] wrong;
+    public AudioClip tap;
 
     public AudioSource audioSource;
     public AudioListener audioListener;
@@ -17,6 +18,11 @@ public class AudioManagerFlashDrill : MonoBehaviour
         flashDrillController = FindObjectOfType<Canvas>().GetComponent<FlashDrillController>();
         audioListener = GetComponent<AudioListener>();
         audioSource = gameObject.GetComponent<AudioSource>();
+    }
+    public void Tap ()
+    {
+        audioSource.clip = tap;
+        audioSource.Play();
     }
 
     public void Correct()

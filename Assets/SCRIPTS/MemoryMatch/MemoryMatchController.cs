@@ -179,6 +179,7 @@ public class MemoryMatchController : MonoBehaviour
         {
             if (!firstGuess)
             {
+                audioManager.Tap();
                 firstGuess = true;
                 FirstGameIndex = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
                 firstGuessName = btnsQ[FirstGameIndex].GetComponent<Image>();
@@ -188,6 +189,7 @@ public class MemoryMatchController : MonoBehaviour
             }
             else if (!secondGuess)
             {
+                audioManager.Tap();
                 secondGuess = true;
                 SecondGameIndex = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
                 secondGuessName = btnsQ[SecondGameIndex].GetComponent<Image>();

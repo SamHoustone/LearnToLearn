@@ -21,7 +21,7 @@ public class SwitchFD : MonoBehaviour
             PlayerPrefs.SetString("FD", "false");
             isSwitch = true;
             Debug.Log("NICE2");
-            SceneManager.LoadScene("FlashDrill");
+            SceneManager.LoadScene("Ra");
 
         }
         if (one == "false")

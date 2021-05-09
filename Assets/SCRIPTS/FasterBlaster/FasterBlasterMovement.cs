@@ -16,11 +16,16 @@ public class FasterBlasterMovement : MonoBehaviour
     private AudioManager audioManager;
 
     public LineRenderer lr;
-
+    private ScoreCoinAnima scoreCoinAnima;
     private FasterBlasterController fasterBlasterController;
+    private TFGiver tFGiver;
+    public AGiver sp;
     // Start is called before the first frame update
     void Start()
     {
+        sp = FindObjectOfType<AGiver>();
+        scoreCoinAnima = FindObjectOfType<ScoreCoinAnima>();
+        tFGiver = FindObjectOfType<TFGiver>();
         audioManager = FindObjectOfType<Camera>().GetComponent<AudioManager>();
         fasterBlasterController = FindObjectOfType<Canvas>().GetComponent<FasterBlasterController>();
         score = FindObjectOfType<Canvas>().GetComponent<Score>();
@@ -29,6 +34,10 @@ public class FasterBlasterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(score.correctint == 15)
+        {
+            fasterBlasterController.Lost.Play("Fade-in");
+        }
         if (Input.GetKeyDown(KeyCode.Space))
             {
             StartCoroutine(Shoot());
@@ -72,8 +81,8 @@ public class FasterBlasterMovement : MonoBehaviour
     }
     IEnumerator Shoot()
     {
-        RaycastHit2D ray = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.up));
-        Draw2DRay(transform.position, ray.point);
+        RaycastHit2D ray = Physics2D.Raycast(sp.transform.position, sp.transform.TransformDirection(Vector2.up));
+        Draw2DRay(sp.transform.position, ray.point);
 
         void Draw2DRay(Vector2 startpos, Vector2 Endpos)
         {
@@ -91,7 +100,7 @@ public class FasterBlasterMovement : MonoBehaviour
                 fasterBlasterController.Go2();
                 ray.transform.GetComponent<Animator>().Play("QuestionAnim");
                 transform.GetComponent<Animator>().Play("QuestionAnim");
-
+                scoreCoinAnima.StartCoinMoveCorrect(transform);
             }
             else
             {
@@ -103,6 +112,7 @@ public class FasterBlasterMovement : MonoBehaviour
                 audioManager.Wrong();
                 ray.transform.GetComponent<Animator>().Play("QuestionAnim");
                 transform.GetComponent<Animator>().Play("QuestionAnim");
+                scoreCoinAnima.StartCoinMoveWrong(tFGiver.transform);
             }
             score.attemps++;
             score.Cal();

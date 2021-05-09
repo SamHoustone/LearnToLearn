@@ -23,6 +23,7 @@ public class DragMatchController : MonoBehaviour
     private List<TextMeshProUGUI> QuestionsText = new List<TextMeshProUGUI>();
 
     public GameObject coustomiser;
+    private string one;
 
     private int reference2;
     private string reference;
@@ -104,6 +105,7 @@ public class DragMatchController : MonoBehaviour
     }    
     void Start()
     {
+        one = PlayerPrefs.GetString("DM");
         StartCoroutine(GO());
     }
 
@@ -111,29 +113,61 @@ public class DragMatchController : MonoBehaviour
     {
         GameObject[] objectsQ = GameObject.FindGameObjectsWithTag("DragMatchA");
 
-        for (int i = 0; i < objectsQ.Length; i++)
+        if (one == "true")
         {
-            Questions.Add(objectsQ[i].GetComponent<Image>());
-            QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
+            for (int i = 0; i < objectsQ.Length; i++)
+            {
+                Questions.Add(objectsQ[i].GetComponent<Image>());
+                QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
 
-            objectsQ[i].GetComponent<Image>().sprite = Questionsprite[i];
-            objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
-
-
+                objectsQ[i].GetComponent<Image>().sprite = Answersprite[i];
+                objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[i];
+                Debug.Log("F");
+            }
         }
+        else
+        {
+            for (int i = 0; i < objectsQ.Length; i++)
+            {
+                Questions.Add(objectsQ[i].GetComponent<Image>());
+                QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
+
+                objectsQ[i].GetComponent<Image>().sprite = Answersprite[i];
+                objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[i];
+                Debug.Log("T");
+            }
+        }
+
     }
     void GetButtonsA()
     {
         GameObject[] objectsA = GameObject.FindGameObjectsWithTag("DragMatchQ");
 
-        for (int i = 0; i < objectsA.Length; i++)
+        if(one == "true")
         {
-            Answers.Add(objectsA[i].GetComponent<Image>());
-            AnswersText.Add(objectsA[i].GetComponentInChildren<TextMeshProUGUI>());
+            for (int i = 0; i < objectsA.Length; i++)
+            {
+                Answers.Add(objectsA[i].GetComponent<Image>());
+                AnswersText.Add(objectsA[i].GetComponentInChildren<TextMeshProUGUI>());
 
-            objectsA[i].GetComponent<Image>().sprite = Answersprite[i];
-            objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[i];
+                objectsA[i].GetComponent<Image>().sprite = Questionsprite[i];
+                objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
+                Debug.Log("F");
+            }
         }
+        else
+        {
+            for (int i = 0; i < objectsA.Length; i++)
+            {
+                Answers.Add(objectsA[i].GetComponent<Image>());
+                AnswersText.Add(objectsA[i].GetComponentInChildren<TextMeshProUGUI>());
+
+                objectsA[i].GetComponent<Image>().sprite = Questionsprite[i];
+                objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
+                Debug.Log("T");
+            }
+        }
+
     }
 
     public void Shuffle(List<string> list, List<Sprite> list2)

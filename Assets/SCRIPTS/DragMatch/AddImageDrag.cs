@@ -21,7 +21,7 @@ public class AddImageDrag : MonoBehaviour
     // Start is called before the first frame update
     void Awake()      
     {
-        one = PlayerPrefs.GetString("s");
+        one = PlayerPrefs.GetString("DM");
         topicname.text = PlayerPrefs.GetString("REFERENCE");
         Debug.Log(PlayerPrefs.GetInt("REFERENCENUMBER"));  
 
@@ -49,15 +49,15 @@ public class AddImageDrag : MonoBehaviour
         {
             for (int i = 0; i < PlayerPrefs.GetInt("REFERENCENUMBER"); i++)
             {
-                GameObject questionGo = Instantiate(questionprefabS);
-                questionGo.name = "" + i;
-                questionGo.transform.SetParent(answer, false);
-            }
-            for (int i = 0; i < PlayerPrefs.GetInt("REFERENCENUMBER"); i++)
-            {
                 GameObject questionGo = Instantiate(answerprefabS);
                 questionGo.name = "" + i;
                 questionGo.transform.SetParent(question, false);
+            }
+            for (int i = 0; i < PlayerPrefs.GetInt("REFERENCENUMBER"); i++)
+            {
+                GameObject questionGo = Instantiate(questionprefabS);
+                questionGo.name = "" + i;
+                questionGo.transform.SetParent(answer, false);
             }
         }
     }

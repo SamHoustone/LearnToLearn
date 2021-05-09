@@ -35,6 +35,7 @@ public class Asnwer : MonoBehaviour
           {
                 if (GetComponent<Image>().sprite.name == flashDrillController.Questions[0].sprite.name)
                 {
+                audioManager.Tap();
                     Debug.Log("CK");
                     score.correctint++;
                     score.attemps++;
@@ -45,7 +46,8 @@ public class Asnwer : MonoBehaviour
                 }
                 else
              {
-                    Debug.Log("FU");
+                audioManager.Tap();
+                Debug.Log("FU");
                     score.wrongint++;
                     score.attemps++;
                     StartCoroutine(WrongWait());

@@ -128,6 +128,13 @@ public class FlashDrillController : MonoBehaviour
     }
     private void Update()
     {
+        if(Replaying == true)
+        {
+            if(number == 3)
+            {
+                number = 0;
+            }
+        }
         if(cardsLeft == 0)
         {
             Replaying = true;
@@ -202,7 +209,7 @@ public class FlashDrillController : MonoBehaviour
                     QuestionsText.Add(objectsQ[i].GetComponentInChildren<TextMeshProUGUI>());
                     Questions.Add(objectsQ[i].GetComponent<Image>());
 
-                    objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[number];
+                    objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = wrongAnswersText[number];
                     objectsQ[i].GetComponent<Image>().sprite = Answersprite[number];
                     number++;
                 }

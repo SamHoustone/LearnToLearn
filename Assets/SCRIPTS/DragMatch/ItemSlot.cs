@@ -28,6 +28,7 @@ public class ItemSlot : MonoBehaviour ,IDropHandler
             audioManager.Correct();
             scoreCoinAnima.StartCoinMoveCorrect(transform);
             GetComponent<Animator>().Play("QuestionAnim");
+            
         }
         else
         {

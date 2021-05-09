@@ -36,7 +36,7 @@ public class SwitchDM : MonoBehaviour
         one = PlayerPrefs.GetString("DM");
 
         Debug.Log(PlayerPrefs.GetString("DM"));
-        if (one == "true")
+        if (one == "false")
         {
             Q.Play("SwitchQ");
             A.Play("SwitchA");

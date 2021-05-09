@@ -8,17 +8,20 @@ public class DragAndDrop : MonoBehaviour , IPointerDownHandler, IBeginDragHandle
     public Canvas canvas;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
+    private AudioManager audioManager;
 
     public Vector3 startPos;
 
     void Awake()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         canvas = FindObjectOfType<Canvas>();
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
+        audioManager.Tap();
         startPos = transform.position;
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;

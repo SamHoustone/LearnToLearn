@@ -31,6 +31,7 @@ public class FasterBlasterController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        one = PlayerPrefs.GetString("FB");
         reference2 = PlayerPrefs.GetInt("REFERENCENUMBER");
         reference = PlayerPrefs.GetString("REFERENCE");
 
@@ -54,11 +55,11 @@ public class FasterBlasterController : MonoBehaviour
         WWW imageQ1 = new WWW("http://localhost/ll/1.jpeg");
         WWW imageQ2 = new WWW("http://localhost/ll/2.jpeg");
         WWW imageQ3 = new WWW("http://localhost/ll/3.jpeg");
-        WWW imageQ4 = new WWW("http://localhost/ll/6.jpeg");
-        WWW imageQ5 = new WWW("http://localhost/ll/7.jpeg");
-        WWW imageQ6 = new WWW("http://localhost/ll/8.jpeg");
-        WWW imageQ7 = new WWW("http://localhost/ll/9.jpeg");
-        WWW imageQ8 = new WWW("http://localhost/ll/10.jpeg");
+        WWW imageQ4 = new WWW("http://localhost/ll/4.jpeg");
+        WWW imageQ5 = new WWW("http://localhost/ll/5.jpeg");
+        WWW imageQ6 = new WWW("http://localhost/ll/6.jpeg");
+        WWW imageQ7 = new WWW("http://localhost/ll/7.jpeg");
+        WWW imageQ8 = new WWW("http://localhost/ll/8.jpeg");
 
         yield return imageQ1;
 

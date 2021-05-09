@@ -80,7 +80,7 @@ public class RaiseTheRoofMovement : MonoBehaviour
         }
           if(Input.GetKey(KeyCode.DownArrow))
         {
-            transform.position = transform.position + new Vector3(0, Down* -0.0005f, 0);
+            transform.position = transform.position + new Vector3(0, Down* -0.1f, 0);
         }
           else
         {
@@ -138,7 +138,7 @@ public class RaiseTheRoofMovement : MonoBehaviour
 
 
             }
-            if(median == 12)
+            if(median == 8)
             {
                 raiseTheRoofGameController.Won();
             }
