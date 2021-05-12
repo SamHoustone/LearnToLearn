@@ -33,7 +33,7 @@ public class ScoreCoinAnima : MonoBehaviour
     {
         Debug.Log("Asdasd");
         Transform targetPos = target;
-        for(int i = 0; i < 2; i++)
+        for(int i = 0; i < 0; i++)
         {
             GameObject _coin = Instantiate(coinPrefab, _initial);
             _coin.GetComponent<Rigidbody2D>().AddForce(new Vector3(Random.RandomRange(-8, 8), Random.RandomRange(-8, 8), Random.RandomRange(-8, 8)), ForceMode2D.Impulse);
@@ -43,7 +43,7 @@ public class ScoreCoinAnima : MonoBehaviour
     public void StartCoinMoveWrong(Transform _initial)
     {
         Vector2 targetPos = target.position;
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 0; i++)
         {
             GameObject _coin = Instantiate(coinPrefab, _initial);
             _coin.GetComponent<Rigidbody2D>().AddForce(new Vector3(Random.RandomRange(-8, 8), Random.RandomRange(-8, 8), Random.RandomRange(-8, 8)), ForceMode2D.Impulse);

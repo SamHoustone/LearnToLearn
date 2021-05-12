@@ -35,8 +35,8 @@ public class ItemSlot : MonoBehaviour ,IDropHandler
             eventData.pointerDrag.GetComponent<Transform>().position = eventData.pointerDrag.GetComponent<DragAndDrop>().startPos;
             score.wrongint++;
             audioManager.Wrong();
+            scoreCoinAnima.StartCoinMoveWrong(transform);            
             GetComponent<Animator>().Play("QuestionAnim");
-            scoreCoinAnima.StartCoinMoveWrong(tFGiver.transform);
         }
 
         score.attemps++;

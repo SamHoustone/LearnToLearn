@@ -27,6 +27,9 @@ public class DragMatchController : MonoBehaviour
 
     private int reference2;
     private string reference;
+    private Sprite spriteQ7;
+
+    public float size;
 
     // Start is called before the first frame update
     [System.Obsolete]
@@ -122,7 +125,7 @@ public class DragMatchController : MonoBehaviour
 
                 objectsQ[i].GetComponent<Image>().sprite = Answersprite[i];
                 objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[i];
-                Debug.Log("F");
+                objectsQ[i].GetComponent<Image>().rectTransform.sizeDelta = new Vector2(Questionsprite[i].rect.width,Questionsprite[i].rect.height)/size;
             }
         }
         else
@@ -134,7 +137,7 @@ public class DragMatchController : MonoBehaviour
 
                 objectsQ[i].GetComponent<Image>().sprite = Answersprite[i];
                 objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[i];
-                Debug.Log("T");
+                objectsQ[i].GetComponent<Image>().rectTransform.sizeDelta = new Vector2(Questionsprite[i].rect.width,Questionsprite[i].rect.height)/size;
             }
         }
 
@@ -152,7 +155,7 @@ public class DragMatchController : MonoBehaviour
 
                 objectsA[i].GetComponent<Image>().sprite = Questionsprite[i];
                 objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
-                Debug.Log("F");
+                objectsA[i].GetComponent<Image>().rectTransform.sizeDelta = new Vector2(Questionsprite[i].rect.width,Questionsprite[i].rect.height) /size;
             }
         }
         else
@@ -164,7 +167,7 @@ public class DragMatchController : MonoBehaviour
 
                 objectsA[i].GetComponent<Image>().sprite = Questionsprite[i];
                 objectsA[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
-                Debug.Log("T");
+                objectsA[i].GetComponent<Image>().rectTransform.sizeDelta = new Vector2(Questionsprite[i].rect.width,Questionsprite[i].rect.height)/size;
             }
         }
 
