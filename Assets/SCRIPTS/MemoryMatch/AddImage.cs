@@ -10,21 +10,30 @@ public class AddImage : MonoBehaviour
     private Transform question;
 
     public GameObject questionprefab;
-
+    
+    public GameObject panel;
+    public List<GameObject> Qpics = new List<GameObject>();
+    private MemoryMatchController memoryMatchController;
     public TextMeshProUGUI topicname;
 
-    void Start()
+    void Awake()
     {
+        memoryMatchController = FindObjectOfType<MemoryMatchController>();
         topicname.text = PlayerPrefs.GetString("REFERENCE");
-
+        
         for (int i = 0;i < PlayerPrefs.GetInt("REFERENCENUMBER")*2; i++)
         {
-            Debug.Log(PlayerPrefs.GetInt("REFERENCENUMBER"));
-            GameObject questionGo = Instantiate(questionprefab);
-            questionGo.name = "" + i;
-            questionGo.transform.SetParent(question, false);
+            Qpics.Add(Instantiate(questionprefab,panel.transform));
         }
     }
-
+    private void Start() 
+    {
+        for (int i = 0;i < PlayerPrefs.GetInt("REFERENCENUMBER")*2; i++)
+        {
+            Qpics[i].transform.position = memoryMatchController.PlaceHolders[i].transform.position;
+            Qpics[i].name = "" + i;
+        }
+        
+    }
 
 }

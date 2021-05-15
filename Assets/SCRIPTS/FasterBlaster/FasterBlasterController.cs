@@ -11,8 +11,8 @@ public class FasterBlasterController : MonoBehaviour
 
     public List<TextMeshProUGUI> AnswersText = new List<TextMeshProUGUI>();
     public List<TextMeshProUGUI> QuestionsText = new List<TextMeshProUGUI>();
-
-
+    public List<Transform> placeHolders = new List<Transform>();
+public GridLayoutGroup GridLayoutGroup;
     public int number = 0;
     // Start is called before the first frame update
     public List<Sprite> Answersprite = new List<Sprite>();
@@ -31,6 +31,7 @@ public class FasterBlasterController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        GridLayoutGroup.enabled = true;
         one = PlayerPrefs.GetString("FB");
         reference2 = PlayerPrefs.GetInt("REFERENCENUMBER");
         reference = PlayerPrefs.GetString("REFERENCE");
@@ -43,6 +44,7 @@ public class FasterBlasterController : MonoBehaviour
     }
     IEnumerator GO()
     {
+        GridLayoutGroup.enabled = true;
         //WWW imageQ1 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1" ));
         //WWW imageQ2 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1"));
         //WWW imageQ3 = new WWW(PlayerPrefs.GetString(reference + "QIMAGE1"));
@@ -106,6 +108,7 @@ public class FasterBlasterController : MonoBehaviour
     }
     public void Start()
     {
+        GridLayoutGroup.enabled = true;
         StartCoroutine(GO());
     }
     public void Shuffleee()
@@ -114,9 +117,17 @@ public class FasterBlasterController : MonoBehaviour
     }
     private void Update()
     {
+        placeHolders[0].transform.position = Questions[0].transform.position;
+        placeHolders[1].transform.position = Questions[1].transform.position;
+        placeHolders[2].transform.position = Questions[2].transform.position;
+
+        Questions[0].rectTransform.sizeDelta = new Vector2(Questions[0].sprite.rect.width,Questions[0].sprite.rect.height)/4;
+        Questions[1].rectTransform.sizeDelta = new Vector2(Questions[1].sprite.rect.width,Questions[1].sprite.rect.height)/4;
+        Questions[2].rectTransform.sizeDelta = new Vector2(Questions[2].sprite.rect.width,Questions[2].sprite.rect.height)/4;
     }
     void GetButtonsQ()
     {
+        GridLayoutGroup.enabled = false;
         GameObject[] objectsQ = GameObject.FindGameObjectsWithTag("FasterBlasterQ");
 
         for (int i = 0; i < objectsQ.Length; i++)

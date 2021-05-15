@@ -13,14 +13,17 @@ public class AddImageDrag : MonoBehaviour
 
     public GameObject answerprefabS;
     public GameObject questionprefabS;
-
+    public List<GameObject> Qpics = new List<GameObject>();
     public TextMeshProUGUI topicname;
+    public DragMatchController DragMatchController;
+    public GameObject panel;
 
     private string one;
 
     // Start is called before the first frame update
     void Awake()      
     {
+        DragMatchController = FindObjectOfType<DragMatchController>();
         one = PlayerPrefs.GetString("DM");
         topicname.text = PlayerPrefs.GetString("REFERENCE");
         Debug.Log(PlayerPrefs.GetInt("REFERENCENUMBER"));  
@@ -33,9 +36,9 @@ public class AddImageDrag : MonoBehaviour
         {
             for (int i = 0; i < PlayerPrefs.GetInt("REFERENCENUMBER"); i++)
             {
-                GameObject questionGo = Instantiate(questionprefab);
-                questionGo.name = "" + i;
-                questionGo.transform.SetParent(question, false);
+                Qpics.Add(Instantiate(questionprefab,panel.transform));
+                Qpics[i].transform.position = DragMatchController.PlaceHolders[i].transform.position;
+                Qpics[i].name = "" + i;
 
             }
             for (int i = 0; i < PlayerPrefs.GetInt("REFERENCENUMBER"); i++)

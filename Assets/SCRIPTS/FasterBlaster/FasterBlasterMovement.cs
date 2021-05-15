@@ -34,6 +34,7 @@ public class FasterBlasterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(score.correctint == 15)
         {
             fasterBlasterController.Lost.Play("Fade-in");
@@ -100,7 +101,7 @@ public class FasterBlasterMovement : MonoBehaviour
                 fasterBlasterController.Go2();
                 ray.transform.GetComponent<Animator>().Play("QuestionAnim");
                 transform.GetComponent<Animator>().Play("QuestionAnim");
-                scoreCoinAnima.StartCoinMoveCorrect(transform);
+                scoreCoinAnima.correct();
             }
             else
             {
@@ -112,7 +113,7 @@ public class FasterBlasterMovement : MonoBehaviour
                 audioManager.Wrong();
                 ray.transform.GetComponent<Animator>().Play("QuestionAnim");
                 transform.GetComponent<Animator>().Play("QuestionAnim");
-                scoreCoinAnima.StartCoinMoveWrong(tFGiver.transform);
+                scoreCoinAnima.Wrong();
             }
             score.attemps++;
             score.Cal();

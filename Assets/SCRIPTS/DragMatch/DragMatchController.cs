@@ -10,6 +10,7 @@ public class DragMatchController : MonoBehaviour
     public List<string> Answerstext = new List<string>();
     public List<string> Questionstext = new List<string>();
 
+    public List<Transform> PlaceHolders = new List<Transform>();
     public List<Sprite> Answersprite = new List<Sprite>();
     public List<Sprite> Questionsprite = new List<Sprite>();
 
@@ -30,11 +31,13 @@ public class DragMatchController : MonoBehaviour
     private Sprite spriteQ7;
 
     public float size;
+    private AddImageDrag addImageDrag;
 
     // Start is called before the first frame update
     [System.Obsolete]
     private void Awake()
     {
+        addImageDrag = FindObjectOfType<AddImageDrag>();
         for (int i = 0; i < reference2; i++)
         {
 
@@ -110,6 +113,28 @@ public class DragMatchController : MonoBehaviour
     {
         one = PlayerPrefs.GetString("DM");
         StartCoroutine(GO());
+        Update();
+    }
+
+    private void Update() 
+    {
+      PlaceHolders[0].transform.position = addImageDrag.Qpics[0].transform.position;
+      PlaceHolders[1].transform.position = addImageDrag.Qpics[1].transform.position;
+      PlaceHolders[2].transform.position = addImageDrag.Qpics[2].transform.position;
+      PlaceHolders[3].transform.position = addImageDrag.Qpics[3].transform.position;
+      PlaceHolders[4].transform.position = addImageDrag.Qpics[4].transform.position;
+      PlaceHolders[5].transform.position = addImageDrag.Qpics[5].transform.position;
+      PlaceHolders[6].transform.position = addImageDrag.Qpics[6].transform.position;
+      PlaceHolders[7].transform.position = addImageDrag.Qpics[7].transform.position;
+
+      PlaceHolders[0].GetComponent<RawImage>().color = addImageDrag.Qpics[0].GetComponent<Image>().color;
+       PlaceHolders[1].GetComponent<RawImage>().color = addImageDrag.Qpics[1].GetComponent<Image>().color;
+        PlaceHolders[2].GetComponent<RawImage>().color = addImageDrag.Qpics[2].GetComponent<Image>().color;
+         PlaceHolders[3].GetComponent<RawImage>().color = addImageDrag.Qpics[3].GetComponent<Image>().color;
+          PlaceHolders[4].GetComponent<RawImage>().color = addImageDrag.Qpics[4].GetComponent<Image>().color;
+           PlaceHolders[5].GetComponent<RawImage>().color = addImageDrag.Qpics[5].GetComponent<Image>().color;
+            PlaceHolders[6].GetComponent<RawImage>().color = addImageDrag.Qpics[6].GetComponent<Image>().color;
+             PlaceHolders[7].GetComponent<RawImage>().color = addImageDrag.Qpics[7].GetComponent<Image>().color;
     }
 
     void GetButtonsQ()

@@ -11,6 +11,8 @@ public class FlashDrillController : MonoBehaviour
 
     public List<Sprite> Answersprite = new List<Sprite>();
     public List<Sprite> Questionsprite = new List<Sprite>();
+    public List<Transform> PlaceHolders = new List<Transform>();
+    public ScoreCoinAnima scoreCoinAnima;
 
     public List<Image> Answers = new List<Image>();
     public List<Image> Questions = new List<Image>();
@@ -42,6 +44,7 @@ public class FlashDrillController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        scoreCoinAnima = FindObjectOfType<ScoreCoinAnima>();
         one = PlayerPrefs.GetString("FD");
         reference2 = PlayerPrefs.GetInt("REFERENCENUMBER");
         reference = PlayerPrefs.GetString("REFERENCE");
@@ -128,6 +131,9 @@ public class FlashDrillController : MonoBehaviour
     }
     private void Update()
     {
+        PlaceHolders[0].transform.position = Questions[0].transform.position;
+        Questions[0].rectTransform.sizeDelta = new Vector2(Questions[0].sprite.rect.width,Questions[0].sprite.rect.height)/6;
+        
         if(Replaying == true)
         {
             if(number == 3)
@@ -286,6 +292,7 @@ public class FlashDrillController : MonoBehaviour
         audioSource.Play();
         animator.Play("right");
         score.Cal();
+        scoreCoinAnima.correct();
 
         if(Replaying == true)
         {
@@ -303,5 +310,6 @@ public class FlashDrillController : MonoBehaviour
         animator.Play("left");
         score.Cal();
         cardsLeft--;
+        scoreCoinAnima.Wrong();
     }
 }

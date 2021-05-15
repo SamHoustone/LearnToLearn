@@ -17,6 +17,8 @@ public class RaiseTheRoofGameController : MonoBehaviour
     public List<Image> Answers = new List<Image>();
     public List<Image> Questions = new List<Image>();
 
+    public Transform Placeholder;
+
         public List<TextMeshProUGUI> AnswersText = new List<TextMeshProUGUI>();
     public List<TextMeshProUGUI> QuestionsText = new List<TextMeshProUGUI>();
 
@@ -116,7 +118,8 @@ public class RaiseTheRoofGameController : MonoBehaviour
     }
     private void Update()
     {
-      
+      Placeholder.position = Questions[0].transform.position;
+      Questions[0].rectTransform.sizeDelta = new Vector2(Questions[0].sprite.rect.width,Questions[0].sprite.rect.height)/2;
     }
 
     public int UniqueRandomInt(int min, int max)

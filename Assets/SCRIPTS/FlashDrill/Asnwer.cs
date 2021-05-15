@@ -42,7 +42,6 @@ public class Asnwer : MonoBehaviour
                     StartCoroutine(CorrectWait());
                     audioManager.Correct();
                     transform.GetComponent<Animator>().Play("QuestionAnim");
-                    scoreCoinAnima.StartCoinMoveCorrect(transform);
                 }
                 else
              {
@@ -53,7 +52,6 @@ public class Asnwer : MonoBehaviour
                     StartCoroutine(WrongWait());
                     audioManager.Wrong();
                     transform.GetComponent<Animator>().Play("QuestionAnim");
-                    scoreCoinAnima.StartCoinMoveWrong(tfgiver.transform);
                     if (flashDrillController.Replaying)
                     {
 

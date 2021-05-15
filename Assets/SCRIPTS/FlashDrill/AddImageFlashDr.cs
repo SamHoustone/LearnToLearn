@@ -13,6 +13,7 @@ public class AddImageFlashDr : MonoBehaviour
 
     public GameObject answerprefabS;
     public GameObject questionprefabS;
+    public GameObject panel;
 
     private string one;
 
@@ -42,9 +43,8 @@ public class AddImageFlashDr : MonoBehaviour
         {
             for (int i = 0; i < 1; i++)
             {
-                GameObject questionGo = Instantiate(questionprefab);
+                GameObject questionGo = Instantiate(questionprefab,panel.transform);
                 questionGo.name = "" + i;
-                questionGo.transform.SetParent(question, false);
 
             }
             for (int i = 0; i < PlayerPrefs.GetInt("REFERENCENUMBER"); i++)

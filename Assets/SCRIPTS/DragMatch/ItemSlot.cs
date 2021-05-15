@@ -24,9 +24,10 @@ public class ItemSlot : MonoBehaviour ,IDropHandler
         if(eventData.pointerDrag.GetComponent<Image>().sprite.name == GetComponent<Image>().sprite.name)
         {
             eventData.pointerDrag.GetComponent<RectTransform>().gameObject.SetActive(false);
+            eventData.pointerDrag.GetComponent<Image>().color = new Color(0,0,0,0);
             score.correctint++;
             audioManager.Correct();
-            scoreCoinAnima.StartCoinMoveCorrect(transform);
+            scoreCoinAnima.correct();
             GetComponent<Animator>().Play("QuestionAnim");
             
         }
@@ -35,7 +36,7 @@ public class ItemSlot : MonoBehaviour ,IDropHandler
             eventData.pointerDrag.GetComponent<Transform>().position = eventData.pointerDrag.GetComponent<DragAndDrop>().startPos;
             score.wrongint++;
             audioManager.Wrong();
-            scoreCoinAnima.StartCoinMoveWrong(transform);            
+            scoreCoinAnima.Wrong();            
             GetComponent<Animator>().Play("QuestionAnim");
         }
 

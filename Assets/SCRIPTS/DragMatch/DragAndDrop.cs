@@ -29,7 +29,7 @@ public class DragAndDrop : MonoBehaviour , IPointerDownHandler, IBeginDragHandle
 
     public void OnDrag(PointerEventData eventData)
     {
-        rectTransform.anchoredPosition += eventData.delta;
+        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)

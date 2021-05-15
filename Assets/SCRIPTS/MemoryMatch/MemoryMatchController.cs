@@ -14,12 +14,14 @@ public class MemoryMatchController : MonoBehaviour
 
     public Sprite[] ImageQ;
     public Sprite[] ImageA;
+    public List<Transform> PlaceHolders = new List<Transform>();
 
     private bool firstGuess = false, secondGuess = false;
     private int FirstGameIndex, SecondGameIndex;
     private Image firstGuessName, secondGuessName;
 
     private bool cantouch;
+    private AddImage addImage;
 
     public List<string> spriteQ = new List<string>();
     public List<Sprite> images = new List<Sprite>();
@@ -28,7 +30,7 @@ public class MemoryMatchController : MonoBehaviour
 
     public List<Button> btnsQ = new List<Button>();
     public Transform Logo;
-
+    public int size;
     public Animator animator;
     private Score score;
     private AudioManager audioManager;
@@ -92,12 +94,31 @@ public class MemoryMatchController : MonoBehaviour
         }
         Go2();
     }
+    private void Update() 
+    {
+      PlaceHolders[0].transform.position = addImage.Qpics[0].transform.position;
+      PlaceHolders[1].transform.position = addImage.Qpics[1].transform.position;
+      PlaceHolders[2].transform.position = addImage.Qpics[2].transform.position;
+      PlaceHolders[3].transform.position = addImage.Qpics[3].transform.position;
+      PlaceHolders[4].transform.position = addImage.Qpics[4].transform.position;
+      PlaceHolders[5].transform.position = addImage.Qpics[5].transform.position;
+      PlaceHolders[6].transform.position = addImage.Qpics[6].transform.position;
+      PlaceHolders[7].transform.position = addImage.Qpics[7].transform.position;
+      PlaceHolders[8].transform.position = addImage.Qpics[8].transform.position;
+      PlaceHolders[9].transform.position = addImage.Qpics[9].transform.position;
+      PlaceHolders[10].transform.position = addImage.Qpics[10].transform.position;
+      PlaceHolders[11].transform.position = addImage.Qpics[11].transform.position;
+      PlaceHolders[12].transform.position = addImage.Qpics[12].transform.position;
+      PlaceHolders[13].transform.position = addImage.Qpics[13].transform.position;
+      PlaceHolders[14].transform.position = addImage.Qpics[14].transform.position;
+      PlaceHolders[15].transform.position = addImage.Qpics[15].transform.position;
+    }
     public void Go2()
     {
+        AddgamePuzzle();
+        Shuffle(spriteQ, images,PlaceHolders);
         GetButtonsQ();
         AddListners();
-        AddgamePuzzle();
-        Shuffle(spriteQ, images);
 
         for (int i = 0; i < reference2 * 2; i++)
         {
@@ -112,7 +133,8 @@ public class MemoryMatchController : MonoBehaviour
         reference2 = PlayerPrefs.GetInt("REFERENCENUMBER");
         cantouch = false;
         audioManager = FindObjectOfType<Camera>().GetComponent<AudioManager>();
-        score = GetComponent<Score>();                
+        score = GetComponent<Score>(); 
+        addImage = FindObjectOfType<AddImage>();               
     }
     IEnumerator BackToNormal()
     {
@@ -120,6 +142,7 @@ public class MemoryMatchController : MonoBehaviour
         for (int i = 0; i < reference2*2; i++)
         {
             btnsQ[i].image.sprite = bgImage;
+            btnsQ[i].image.rectTransform.sizeDelta = new Vector2(bgImage.rect.width,bgImage.rect.height)/10;
             cantouch = true;
         } 
     }    
@@ -128,14 +151,14 @@ public class MemoryMatchController : MonoBehaviour
     void GetButtonsQ()
     {
         GameObject[] objectsQ = GameObject.FindGameObjectsWithTag("MemoryMatchQ");
-
-        for (int i = 0; i < reference2*2;i++)
+       for (int i = 0; i < reference2*2;i++)
         {
             btnsQ.Add(objectsQ[i].GetComponent<Button>());
             btnsQ[i].image.sprite = bgImage;
+            objectsQ[i].GetComponent<Image>().rectTransform.sizeDelta = new Vector2(images[i].rect.width,images[i].rect.height)/size;
         }
+        
     }
-
     public void AddgamePuzzle ()
 
     {
@@ -186,6 +209,8 @@ public class MemoryMatchController : MonoBehaviour
                 btnsQ[FirstGameIndex].GetComponent<Image>().sprite = images[FirstGameIndex];
                 btnsQ[FirstGameIndex].interactable = false;
                 btnsQ[FirstGameIndex].GetComponent<Animator>().Play("QuestionAnim");
+                
+                btnsQ[FirstGameIndex].GetComponent<Image>().rectTransform.sizeDelta = new Vector2(images[FirstGameIndex].rect.width,images[FirstGameIndex].rect.height)/size;
             }
             else if (!secondGuess)
             {
@@ -196,6 +221,9 @@ public class MemoryMatchController : MonoBehaviour
                 btnsQ[SecondGameIndex].GetComponent<Image>().sprite = images[SecondGameIndex];
                 StartCoroutine(CheckIfTheGameIsFinished());
                 btnsQ[SecondGameIndex].GetComponent<Animator>().Play("QuestionAnim");
+
+                btnsQ[SecondGameIndex].GetComponent<Image>().rectTransform.sizeDelta = new Vector2(images[SecondGameIndex].rect.width,images[SecondGameIndex].rect.height)/size;
+                
             }
         }    
         
@@ -212,13 +240,15 @@ public class MemoryMatchController : MonoBehaviour
             btnsQ[SecondGameIndex].interactable = false;
 
             btnsQ[FirstGameIndex].image.color = new Color(0, 0, 0, 0);
+            PlaceHolders[FirstGameIndex].GetComponent<RawImage>().color = new Color(0,0,0,0);
             btnsQ[SecondGameIndex].image.color = new Color(0, 0, 0, 0);
+            PlaceHolders[SecondGameIndex].GetComponent<RawImage>().color = new Color(0,0,0,0);
 
             score.correctint++;
 
             audioManager.Correct();
 
-            scoreCoinAnima.StartCoinMoveCorrect(btnsQ[SecondGameIndex].transform);
+            scoreCoinAnima.correct();
         }
         else
         {
@@ -228,7 +258,10 @@ public class MemoryMatchController : MonoBehaviour
             score.Cal();
             audioManager.Wrong();
             score.wrongint++;
-            scoreCoinAnima.StartCoinMoveWrong(Logo);
+            scoreCoinAnima.Wrong();
+
+            btnsQ[FirstGameIndex].image.rectTransform.sizeDelta = new Vector2(bgImage.rect.width,bgImage.rect.height)/10;
+            btnsQ[SecondGameIndex].image.rectTransform.sizeDelta = new Vector2(bgImage.rect.width,bgImage.rect.height)/10;
 
         }
         score.attemps++;
@@ -237,7 +270,7 @@ public class MemoryMatchController : MonoBehaviour
         firstGuess = secondGuess = false;
     }
 
-    void Shuffle (List<string> list,List<Sprite> list2)
+    void Shuffle (List<string> list,List<Sprite> list2,List<Transform> list3)
     {
         for (int i=0; i < reference2*2; i++)
         {
@@ -250,6 +283,10 @@ public class MemoryMatchController : MonoBehaviour
             Sprite temp2 = list2[i];
             list2[i] = list2[randomIndex];
             list2[randomIndex] = temp2;
+
+            Transform temp3 = list3[i];
+            list3[i] = list3[randomIndex];
+            list3[randomIndex] = temp3;
         }
     }
    

@@ -114,7 +114,7 @@ public class RaiseTheRoofMovement : MonoBehaviour
                 median++;
 
 
-                scoreCoinAnima.StartCoinMoveCorrect(collision.transform);
+                scoreCoinAnima.correct();
             }
             else
             {
@@ -134,7 +134,7 @@ public class RaiseTheRoofMovement : MonoBehaviour
                 {
                     raiseTheRoofGameController.number++;
                 }
-                scoreCoinAnima.StartCoinMoveWrong(tfgiver.transform);
+                scoreCoinAnima.Wrong();
 
 
             }

@@ -29,25 +29,13 @@ public class ScoreCoinAnima : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void StartCoinMoveCorrect(Transform _initial)
+    public void correct()
     {
-        Debug.Log("Asdasd");
-        Transform targetPos = target;
-        for(int i = 0; i < 0; i++)
-        {
-            GameObject _coin = Instantiate(coinPrefab, _initial);
-            _coin.GetComponent<Rigidbody2D>().AddForce(new Vector3(Random.RandomRange(-8, 8), Random.RandomRange(-8, 8), Random.RandomRange(-8, 8)), ForceMode2D.Impulse);
-        }
         ScorePoints = ScorePoints + 20;
+ 
     }
-    public void StartCoinMoveWrong(Transform _initial)
+    public void Wrong()
     {
-        Vector2 targetPos = target.position;
-        for (int i = 0; i < 0; i++)
-        {
-            GameObject _coin = Instantiate(coinPrefab, _initial);
-            _coin.GetComponent<Rigidbody2D>().AddForce(new Vector3(Random.RandomRange(-8, 8), Random.RandomRange(-8, 8), Random.RandomRange(-8, 8)), ForceMode2D.Impulse);
-        }
         ScorePoints = ScorePoints - 10;
     }
 
