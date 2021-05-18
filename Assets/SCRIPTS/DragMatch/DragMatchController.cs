@@ -118,7 +118,7 @@ public class DragMatchController : MonoBehaviour
 
     private void Update() 
     {
-      PlaceHolders[0].transform.position = addImageDrag.Qpics[0].transform.position;
+       PlaceHolders[0].transform.position = addImageDrag.Qpics[0].transform.position;
       PlaceHolders[1].transform.position = addImageDrag.Qpics[1].transform.position;
       PlaceHolders[2].transform.position = addImageDrag.Qpics[2].transform.position;
       PlaceHolders[3].transform.position = addImageDrag.Qpics[3].transform.position;
@@ -135,6 +135,7 @@ public class DragMatchController : MonoBehaviour
            PlaceHolders[5].GetComponent<RawImage>().color = addImageDrag.Qpics[5].GetComponent<Image>().color;
             PlaceHolders[6].GetComponent<RawImage>().color = addImageDrag.Qpics[6].GetComponent<Image>().color;
              PlaceHolders[7].GetComponent<RawImage>().color = addImageDrag.Qpics[7].GetComponent<Image>().color;
+      
     }
 
     void GetButtonsQ()
@@ -150,7 +151,6 @@ public class DragMatchController : MonoBehaviour
 
                 objectsQ[i].GetComponent<Image>().sprite = Answersprite[i];
                 objectsQ[i].GetComponentInChildren<TextMeshProUGUI>().text = Answerstext[i];
-                objectsQ[i].GetComponent<Image>().rectTransform.sizeDelta = new Vector2(Questionsprite[i].rect.width,Questionsprite[i].rect.height)/size;
             }
         }
         else

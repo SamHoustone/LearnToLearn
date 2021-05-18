@@ -128,7 +128,7 @@ public class MemoryMatchController : MonoBehaviour
     }
     public void Start()
     {
-        StartCoroutine(GO());
+       StartCoroutine(GO());
         reference = PlayerPrefs.GetString("REFERENCE");
         reference2 = PlayerPrefs.GetInt("REFERENCENUMBER");
         cantouch = false;

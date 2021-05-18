@@ -14,9 +14,11 @@ public class AddImageDrag : MonoBehaviour
     public GameObject answerprefabS;
     public GameObject questionprefabS;
     public List<GameObject> Qpics = new List<GameObject>();
+    public List<GameObject> Apics = new List<GameObject>();
     public TextMeshProUGUI topicname;
     public DragMatchController DragMatchController;
     public GameObject panel;
+    public GameObject panel2;
 
     private string one;
 
@@ -58,9 +60,8 @@ public class AddImageDrag : MonoBehaviour
             }
             for (int i = 0; i < PlayerPrefs.GetInt("REFERENCENUMBER"); i++)
             {
-                GameObject questionGo = Instantiate(questionprefabS);
-                questionGo.name = "" + i;
-                questionGo.transform.SetParent(answer, false);
+                 Apics.Add(Instantiate(questionprefabS,panel.transform));
+                Apics[i].name = "" + i;
             }
         }
     }
